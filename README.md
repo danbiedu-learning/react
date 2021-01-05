@@ -1,2 +1,2 @@
-# react
-Everyday, learning react and write what you learned, do not write any security code!
+# Udemy
+Lecture Notes learn from Udemy, Do not write any security code!
