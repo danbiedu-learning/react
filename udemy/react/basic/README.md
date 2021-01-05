@@ -37,3 +37,4 @@ Technically same, but different "module system"
 - require : CommonJS Modules
 
 ![Basic%20(2021%2001%2005)%20d47249fb7a104ce79936860da2c4f55c/Screen_Shot_2021-01-05_at_12.21.57_PM.png](Basic%20(2021%2001%2005)%20d47249fb7a104ce79936860da2c4f55c/Screen_Shot_2021-01-05_at_12.21.57_PM.png)
+
