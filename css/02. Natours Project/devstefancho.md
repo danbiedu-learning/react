@@ -44,4 +44,68 @@ body {
 - clip path를 만들어 주는 사이트 : https://bennettfeely.com/clippy/
 - polygon에서 top-left가 (0, 0) 좌표이고, x+ 는 오른쪽, y+는 아래쪽이다.
 - vh로 크기를 해주면 브라우저의 px에 따라 dynamic하게 해줄 수 있다.
+---
+```css
+.header {
+    height: 95vh;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba(126, 213, 111, 0.8),
+            rgba(40, 180, 131, 0.8)),
+    url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.heading-primary-main {
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 17px;
+    text-align: center;
+}
+```
+### logo를 배경기준으로 이동
+- 부모 클래스(header)에 `position: relative`를 해주고 logo의 `position: absolute`를 해준다.
+- height 로 사이즈를 지정해준다. (width를 정하지 않으면, auto로 됨)
+
+### 텍스트의 구성
+- `display: block`을 해주면, width를 100% 가져가지 때문에, 줄바꿈을 쉽게 할 수 있다.
+- size, weight, spacing 정도가 기본 셋팅
+
+### heading 글자를 화면 중앙으로 보내기
+- 우선 absolute로 position을 해주고, 원하는 위치에 보낸다. 단 이때 pivot(기준점)이 왼쪽-위 이므로, transform을 해준다.
+- translate는 부모 element와 무관하고, 본인을 기준으로 움직인다. 따라서 `translate(-50%, -50%)` 를 해주면 된다.
 
