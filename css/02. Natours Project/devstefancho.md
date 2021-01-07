@@ -165,5 +165,49 @@ body {
 - `animation: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction`
 - `ease-in`은 fast -> slow 이고 `ease-out`은 slow -> fast 이다.
 
+---
+> pseudo class와  transistion
+```css
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 40px;
+    border-radius: 100px;
+    transition: all .2s;
+}
 
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
 
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 10px rgba(0,0,0,.2)
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
+}
+```
+### Pseudo Classes
+- pseudo class는 selector에 추가하여, 특정 state에 대해 specified(정의) 된다.
+- `:link`는 방문하지 않는 경우, `:visited`는 방문한 경우이다.
+
+### transition
+- `transition`은 CSS properties가 변할 때, animation을 컨트롤하는 방법이다.
+- `transition`은 기본 selector에 넣는다.
+- `transition: <property> <duration> <timing-function> <delay>`
+- property가 `all`이면 모든 property의 변화값에 적용된다.
+
+### Button shadowing
+- button에 box-shadow로 hover과 active(클릭 시)를 약간 차이를 준다. active에서 값을 작게 줘서 화면에 더 붙는 느낌을 줄 수 있다.
+- translate로 화면이 떠있고, 클릭했을 때 내려가는 느낌을 줄 수 있다.
+- `box-shadow: offset-x | offset-y | blur-radius | color` 이다.
+
+### inline-block
+- padding, margin, width, height 등을 쓸 수 있다. (inline에서는 못씀, inline과의 차이점)
+- 줄바꿈이 일어나지 않는다. (block과의 차이점)
