@@ -109,3 +109,61 @@ body {
 - 우선 absolute로 position을 해주고, 원하는 위치에 보낸다. 단 이때 pivot(기준점)이 왼쪽-위 이므로, transform을 해준다.
 - translate는 부모 element와 무관하고, 본인을 기준으로 움직인다. 따라서 `translate(-50%, -50%)` 를 해주면 된다.
 
+---
+> 아래 코드는 위 코드의 중복된 부분을 제거 했음.
+```css
+.heading-primary {
+    backface-visibility: hidden;
+}
+
+.heading-primary-main {
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    /*animation-delay: 0.5s;*/
+    /*animation-iteration-count: 3;*/
+}
+
+.heading-primary-sub {
+    animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+```
+### keyframe 사용
+- opacity와 translate의 조합으로 텍스트 연출을 간단하게 해줌. (예를들면 텍스트가 왼쪽에서 오른쪽으로 서서히 나타나는 효과)
+- 텍스트가 animation 중에 위아래로 흔들리는 현상이 있으면 `backface-visibility: hidden`을 해주면 된다. (발생원인은 아무도 모름)
+
+### animation property
+- shorthand로 animation을 사용할 수 있다.
+- `animation: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction`
+- `ease-in`은 fast -> slow 이고 `ease-out`은 slow -> fast 이다.
+
+
+
