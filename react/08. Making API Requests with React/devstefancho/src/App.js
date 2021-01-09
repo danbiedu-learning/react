@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from "./components/SearchBar";
+import env from 'react-dotenv'
 
 class App extends React.Component {
 
