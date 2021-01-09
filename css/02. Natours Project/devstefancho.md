@@ -176,6 +176,7 @@ body {
     padding: 15px 40px;
     border-radius: 100px;
     transition: all .2s;
+    position: relative;
 }
 
 .btn:hover {
@@ -211,3 +212,53 @@ body {
 ### inline-block
 - padding, margin, width, height 등을 쓸 수 있다. (inline에서는 못씀, inline과의 차이점)
 - 줄바꿈이 일어나지 않는다. (block과의 차이점)
+
+> 버튼 효과주기
+
+```css
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #ffffff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+}
+```
+### animation
+- .75s와 같이 `delay`를 줘서 나타는 효과를 줄 수 있다.
+- fill-mode를 `backwards`로 하면 element의 시작 style이 `keyframe`의 first keyframe 값을 갖게 된다.
+
+### pseudo-elements ::after
+- `content` 는 필수 property로 '' 이렇게 빈 값이라도 줘야한다.
+- 상위 `relative`의 사이즈를 그대로 가져오기 위해서 `height`와 `width`를 100%로 했다. 또한 겹치면서 뒤에 배치하게 하기 위해서 `position: absolute` 를 했다.
