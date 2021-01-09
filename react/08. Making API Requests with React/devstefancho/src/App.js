@@ -1,11 +1,15 @@
 import React from 'react';
+import {APICaller} from "./api/unsplash";
+
 import SearchBar from "./components/SearchBar";
-import env from 'react-dotenv'
 
 class App extends React.Component {
 
-    onSearchSubmit(item) {
-        console.log(item)
+    async onSearchSubmit(item) {
+        const response = await APICaller.get('/search/photos', {
+            params: { query: item },
+        })
+        console.log(response.data.results);
     }
 
     render() {
