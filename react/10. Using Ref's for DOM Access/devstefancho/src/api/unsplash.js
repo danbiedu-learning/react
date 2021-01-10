@@ -1,9 +1,8 @@
 import axios from 'axios';
-import env from 'react-dotenv'
 
 export const APICaller = axios.create({
     baseURL: 'https://api.unsplash.com',
     headers: {
-        Authorization: `Client-ID ${env.ACC_KEY}`
+        Authorization: `Client-ID ${process.env.REACT_APP_ACC_KEY}`
     }
 })
