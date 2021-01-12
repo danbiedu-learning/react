@@ -90,3 +90,39 @@ body {
   box-sizing: border-box;
 }
 ```
+
+## The Visual Formatting Model
+### Dimensions of boxes: the box-model
+![](./img/box_model.png)
+- box간에 거리를 두기 위해서는 `margin`을 쓴다.
+
+![](./img/not_border-box.png)
+- `border-box`가 아닐때는 위와같이 계산이 복잡해진다.
+
+![](./img/border-box.png)
+- `border-box`로 전체 width, height를 더 쉽게 예측할 수 있다.
+### Box type: inline, block, and inline-block
+![](./img/box_type.png)
+- `inline-block`의 경우 [위 사진](./img/box_model.png)에 있는 box-model 의 특징을 적용할 수 있고, inline의 특징을 동시에 갖는다.
+
+### Position scheme: floats and position
+![](./img/position.png)
+- `absolute`의 No impact는 overlap이 될 수 있음을 말한다.
+### Stacking contexts
+![](./img/stacking.png)
+- stack을 쌓을 수 있는 것은 `z-index` 뿐만이 아니다. opacity, filter, transform, etc.. 과 같이 여러가지가 있기 때문에 `z-index`만으로 원하는 stack이 되지 않을 때가 있다.
+
+## CSS Architecture
+- Think => Build => Architecting 순으로 진행한다.
+
+![](./img/think.png)
+- Think에서 Component 단위로 구성을 한다.
+
+![](./img/bem1.png)
+![](./img/bem2.png)
+![](./img/bem3.png)
+- Build에서는 BEM 방식을 쓰는데, element는 block과의 관계가 있어서 홀로 사용될 수 없는 경우, modifier는 block의 수정된 버전을 의미한다. block은 단독으로 어디서든 쓰일 수 있는 경우를 나타낸다.
+  (Chrome에서는 `.block--modi`, `.block__element` 형태로 써도 문제가 없으나 Firefox에서는 안먹히는 듯 하다.)
+
+![](./img/architect.png)
+- Architecting 에서는 directory 구조를 만들고, 7-1 pattern을 적용해본다.
