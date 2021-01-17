@@ -108,6 +108,59 @@
 }
 ```
 
+### Image Composition 만들기 (겹친 이미지)
+- 아래와 같이 3개의 이미지가 있을 때, 이미지를 겹치게 하고, hover시 해당 이미지 사이즈가 커지고, 나머지가 줄어드는 효과를 줄 수 있다.
+- composition container로 relative를 잡고, 각 이미지를 absolute로 배치한다.
+- 이미지가 hover시 올라오는 효과를 주기 위해, z-index를 추가하였다.
+- hover된 이미지 이외에 이미지는 0.9 scale로 사이즈를 줄여, 선택된 이미지가 더 부각되게 만들었다.
+```html
+<div class="composition">
+  <img src="img1.jpg" class="composition__photo composition__photo--1">
+  <img src="img2.jpg" class="composition__photo composition__photo--2">
+  <img src="img3.jpg" class="composition__photo composition__photo--3">
+</div>
+```
+```scss
+.composition {
+  position: relative;
+
+  &__photo {
+    width: 55%;
+    position: absolute;
+    box-shadow: 0 1rem 2rem rgba($color-black, .4);
+    transition: all .2s, z-index 0s;
+    z-index: 10;
+    outline-offset: 1rem;
+
+    &--1 {
+      left: 5%;
+      top: -2rem;
+    }
+
+    &--2 {
+      top: 2rem;
+      right: 0;
+    }
+
+    &--3 {
+      top: 10rem;
+      right: 20%;
+    }
+
+    &:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 2rem 3rem rgba($color-black, .5);
+      z-index: 20;
+      outline: solid $color-primary 2rem;
+    }
+  }
+
+  &:hover &__photo:not(:hover) {
+    transform: scale(.9);
+  }
+}
+```
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
