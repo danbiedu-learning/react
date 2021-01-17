@@ -79,12 +79,46 @@
 - h2와 같이 header text는 `text-transform`으로 `uppercase` 해줌
 - `letter-spacing`도 약간 적용해주도록 한다.
 
+### button 만들기
+- `&:link, &:visited, &:hover, &:active`에 대해서 만든다.
+- 기본 구성은 예는 아래와 같다. (버튼에 hover하면 버튼이 색이 바뀌면서 올라가고 클릭하면 버튼을 누르는 효과)
+```scss
+.btn-text {
+  &:link, &:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: $color-primary;
+    font-size: $default-font-fize;
+    padding: 3px;
+    border-bottom: 1px solid $color-primary;
+    text-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transition: all .2s;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    background-color: $color-primary;
+    color: $color-white;
+    text-shadow: 0 0.5rem 1rem rgba($color-black, .15);
+  }
+
+  &:active {
+    transform: translateY(0px);
+  }
+}
+```
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
+- `margin-bottom-sm`, `margin-bottom-lg` 와 같이 숫자보다 small, large와 같은 이름을 활용하여 추후에 변경이 더 쉽게 된다. (margin-bottom-8 이런식은 사이즈와 class 이름을 동시에 업데이트 해줘야 하므로)
 
 ### pages directory
 - 해당페이지에만 들어가는 selector 를 모아둔다.
+
+### abstract directory
+- variable에서 `$default-font-size`를 지정해준다. (자주 사용하므로)
+
 
 
 
