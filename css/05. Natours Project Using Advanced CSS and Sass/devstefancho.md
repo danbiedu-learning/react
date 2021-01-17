@@ -30,3 +30,32 @@
   }
 }
   ```
+### last-child 제외하고 적용하기
+아래와 같은 selector를 만들면 last-child가 아닌 것들을 선택하게 됨.
+```scss
+&:not(:last-child) {
+  
+}
+```
+
+### attribute selector 활용
+- `^=` 시작문자 attribute 선택
+- `$=` 마지막문자 attribute 선택
+- `*=` 포함하는 attribute 선택
+```html
+<div class="row">
+  <div class="col-1-of-2">Col 1 of 2</div>
+  <div class="col-1-of-2">Col 1 of 2</div>
+</div>
+```
+```scss
+.row{
+  [class^="col-"] {
+    background-color: orangered;
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $gutter-horizontal;
+    }
+  }
+```
