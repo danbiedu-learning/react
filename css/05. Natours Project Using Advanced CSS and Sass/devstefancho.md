@@ -14,6 +14,18 @@
 3. Css Grid
 
 ## Float layout 구성하기
+
+### Task
+- Thinking about components
+- How and Why to use utility classes
+- How to use the `background-clip` property
+- How to `transform` multiple properties simultaneously
+- How to use the `outline-offset` property together with `outline`
+- How to style elements that are NOT hovered while others are
+- How to include and use an icon font
+- Another way of creating the "skewed section" design
+- How and When to use the direct child selector
+
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
 - variable은 `#{$variable-name}`와 같은 형태로 써준다.
@@ -59,14 +71,6 @@
     }
   }
 ```
-
-### Task
-- Thinking about components
-- How and Why to use utility classes
-- How to use the `background-clip` property
-- How to `transform` multiple properties simultaneously
-- How to use the `outline-offset` property together with `outline`
-- How to style elements that are NOT hovered while others are
 
 ### rgba
 - rgba에 variable을 함께 쓸 수 있다. `rgba($color-black, .2)`
@@ -159,6 +163,24 @@
     transform: scale(.9);
   }
 }
+```
+
+### feature-box 만들기
+- background image에 기울임(`skew`)를 준 다음, 내부에 direct child를 select해서 반대로 기울여준다. 그러면 배경만 기울인 효과가 된다.
+```scss
+.section-features {
+  background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+
+  & > * {
+    transform: skewY(7deg);
+  }
+}
+```
+- icon 을 쓸 때 `<i> </i>` 태그를 쓰는 이유는, 과거에는 italic을 위한 태그였는데 용도가 사라지면서 많은 곳에서 icon 용으로 사용하게 된 것이다.
+```html
+<i class="feature-box__icon icon-basic-heart"></i>
 ```
 
 ## Scss Directory
