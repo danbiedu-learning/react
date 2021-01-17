@@ -59,3 +59,79 @@
     }
   }
 ```
+
+### Task
+- Thinking about components
+- How and Why to use utility classes
+- How to use the `background-clip` property
+- How to `transform` multiple properties simultaneously
+- How to use the `outline-offset` property together with `outline`
+- How to style elements that are NOT hovered while others are
+
+### rgba
+- rgba에 variable을 함께 쓸 수 있다. `rgba($color-black, .2)`
+
+### text 효과 주기
+- `tranform`에 `skew`, `scale`을 이용한다. (`transition` 설정도 해준다.)
+- [angle](https://developer.mozilla.org/en-US/docs/Web/CSS/angle) 은 4가지를 사용할 수 있고, `deg`로 썼다.
+- `text-shadow` 사용
+- `background-image`로 `linear-gradient`를 주고, `color`는 `transparent`, `-webkit-background-clip` 사용으로 text에 gradient 효과가 나타나도록 한다.
+- h2와 같이 header text는 `text-transform`으로 `uppercase` 해줌
+- `letter-spacing`도 약간 적용해주도록 한다.
+
+## Scss Directory
+### utility directory
+- text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
+
+### pages directory
+- 해당페이지에만 들어가는 selector 를 모아둔다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
