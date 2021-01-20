@@ -242,6 +242,72 @@
   }
 }
 ```
+### Rotating Card 앞면 스타일링 (image part)
+- overflow : 이미지가 튀어나가지 않도록 막아줌, 예를 들면 아래에서 border-radius를 줬는데, image를 그 위에 올리면 image 모서리가 그 위롤 덮게 된다.
+  이미지가 border-radius 밖으로 튀어나가지 않도록 가려준다.
+```scss
+{
+  overflow: hidden;
+}
+```
+- box-decoration-break : text의 경우 width에 의해 줄이 여러개가 생겨도, 하나의 줄로 보기 때문에 padding이 글자 처음과 끝에만 적용된다. box-decoration-break를 쓰면
+  여러 줄이 생길때 각 줄이 각각의 div를 갖고 있는 것처럼 만들어줘서 각 줄마다 padding이 좌우에 똑같이 적용된다.
+```scss
+  //FRONT SIDE STYLING
+  &__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: screen; // background-image에 있는 gradient와 이미지를 blending 해줌
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); // image clip 하기 (같은 값이라도 그려지는 포인트의 순서에 따라 모양이 달라짐)
+
+    &--1 {
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+    }
+  }
+
+  &__heading { // 이미지 안에 곁들일 글자
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: $color-white;
+    text-align: right;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    width: 75%;
+  }
+
+  &__heading-span {
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone; // line break 효과
+    box-decoration-break: clone;
+
+    &--1 {
+      background-image: linear-gradient(to right bottom,
+              rgba($color-secondary-light, .85),
+              rgba($color-secondary-dark, .85));
+    }
+  }
+
+  &__details {
+    padding: 2rem;
+
+    ul {
+      list-style: none; // ul 형태일때 거의 항상 쓴다.
+      width: 80%;
+      margin: 0 auto; // div내의 div를 중간으로 맞출때 보통 마진 0 auto를 쓴다.
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-grey-light-2;
+        }
+      }
+    }
+  }
+```
 
 ## Scss Directory
 ### utility directory
