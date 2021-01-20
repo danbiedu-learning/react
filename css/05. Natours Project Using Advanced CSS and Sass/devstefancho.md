@@ -25,6 +25,11 @@
 - How to include and use an icon font
 - Another way of creating the "skewed section" design
 - How and When to use the direct child selector
+- How to Build an amazing, rotating card
+- How to use `perspective` in CSS
+- How to use the `backface-visibility` property
+- Using background blend modes
+- How and when to use `box-decoration-break`
 
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
@@ -181,6 +186,61 @@
 - icon 을 쓸 때 `<i> </i>` 태그를 쓰는 이유는, 과거에는 italic을 위한 태그였는데 용도가 사라지면서 많은 곳에서 icon 용으로 사용하게 된 것이다.
 ```html
 <i class="feature-box__icon icon-basic-heart"></i>
+```
+
+### Rotating card 만들기
+- parent element의 모든 child element들이 absolute position을 가질 경우, parent가 collapse되서 height가 0이 된다.
+  (모든 child가 float일때와 같은 현상) float는 clearfix를 만들어서 붙여주면 되지만, absolute에서는 그 방법이 되지 않으므로 인위적으로 parent element에
+  필요한 height를 넣어준다.
+```html
+<div class="card">
+  <div class="card__side card__side--front">front</div>
+  <div class="card__side card__side--back">back</div>
+</div>
+```
+```scss
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem; 
+  // .card안에 모든 element가 absolute여서 collapse되서 height가 0이 됨
+  // 따라서 인위적으로 height값을 추가해줌
+
+  &__side {
+    color: #fff;
+    font-size: 2rem;
+
+    transition: all 1.2s ease;
+    position: absolute; // front와 back 카드가 겹치도록
+    top: 0;
+    left: 0;
+    width: 100%; // absolute로 하면 크기가 글씨만큼만 차지하므로 parent 사이즈만큼 키워줌
+    height: 100%;
+    backface-visibility: hidden; // 각 카드의 뒷면을 숨기기
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+      transform: rotateY(180deg); // back 카드는 미리 돌려놓는다.
+    }
+
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg); 
+    // back과 반대방향으로 돌아가게 하기 위해서 - 방향으로 돌림 (360도 회전처럼 보이게)
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
 ```
 
 ## Scss Directory
