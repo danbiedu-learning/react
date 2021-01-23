@@ -30,6 +30,11 @@
 - How to use the `backface-visibility` property
 - Using background blend modes
 - How and when to use `box-decoration-break`
+- How to make text flow around shapes with `shape-outside` and `float`
+- How to apply a `filter` to images
+- How to create a background video covering an entire section
+- How to use the `<video>` HTML element
+- How and when to use the `object-fit` property
 
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
@@ -308,6 +313,32 @@
     }
   }
 ```
+### transform 적용시 주의해야 할 점
+- 예를 들어 아래와 같이 transform을 적용하였다. 목적은 story 카드를 기울이는 것이다. 이때 `&__shape` 부분에 `transform`에 `skew`를 추가한 것을 볼 수있다.
+`& > *` 로 `skew`를 다시 반대로 줬음에도 불구하고, 저렇게 다시 주는 이유는 transform이 덮어지기 때문이다. 즉 주석처럼 쓰면 `transform: translateX(-3rem)` 만 적용된다.
+```scss
+.story {
+  transform: skewX(-12deg);
+
+  & > * {
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    transform: translateX(-3rem) skewX(12deg);
+    // transform: translateX(-3rem) 이렇게 쓰면 skewX(12deg)는 적용안됨, transform 이 덮어지므로
+
+    &__img {
+      height: 100%;
+    }
+  }
+
+}
+```
+
+### shape-outside
+- image를 trim하는 것이 아니라, 이미지의 모양을 정하는 것이다. (clip-path는 이미지를 trim 하는 것)
+- [참고: Difference between the clip-path and shape-outside properties](https://stackoverflow.com/questions/55090634/difference-between-the-clip-path-and-shape-outside-properties)
 
 ## Scss Directory
 ### utility directory
