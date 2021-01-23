@@ -345,6 +345,40 @@
 - `rotate`를 하고 뒷면을 `hidden` 할 때 (카드 뒤집기 애니메이션에서 사용)
 - `transform`의 `transition`에서 이상현상이 있을 때 (transition마지막에 글자나 이미지가 흔들리는 경우)
 
+### background video 만들기
+- video 태그안에 있는 source 들이 실행됨, mp4가 안되면 webm이 그리고 webm이 안되면 Your browser is not supported! 가 뜬다.
+- `object-fit: cover`는 비율을 유지하면서 최대크기에 맞춘다. `background-size: cover`과 비슷하다고 할 수 있다.
+- 크기를 맞췄음에도 튀어나가는 부분이 있으면 `overflow: hidden`을 시도해본다.
+- `opacity`로 투명도를 준다.
+```html
+<div class="bg-video">
+  <video class="bg-video__content" autoplay muted loop>
+    <source src="img/video.mp4" type="video/mp4">
+    <source src="img/video.webm" type="video/webm">
+    Your browser is not supported!
+  </video>
+</div>
+```
+```scss
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: .15;
+  overflow: hidden;
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+```
+
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
