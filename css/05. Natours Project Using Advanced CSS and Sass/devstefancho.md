@@ -340,6 +340,11 @@
 - image를 trim하는 것이 아니라, 이미지의 모양을 정하는 것이다. (clip-path는 이미지를 trim 하는 것)
 - [참고: Difference between the clip-path and shape-outside properties](https://stackoverflow.com/questions/55090634/difference-between-the-clip-path-and-shape-outside-properties)
 
+### backface-visibility
+적용 방법
+- `rotate`를 하고 뒷면을 `hidden` 할 때 (카드 뒤집기 애니메이션에서 사용)
+- `transform`의 `transition`에서 이상현상이 있을 때 (transition마지막에 글자나 이미지가 흔들리는 경우)
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
