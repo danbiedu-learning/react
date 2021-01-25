@@ -35,6 +35,11 @@
 - How to create a background video covering an entire section
 - How to use the `<video>` HTML element
 - How and when to use the `object-fit` property
+- How to implement "solid-color gradients"
+- How the general and adjacent sibling selectors work and why we need them
+- How to use the `::input-placeholder` pseudo-element
+- How and when to use the `:focus`, `:invalid`, `placeholder-shown` and `:checked` pseudo-classes
+- Techniques to build custom radio buttons
 
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
@@ -378,6 +383,98 @@
 }
 ```
 
+### Form에  스타일 주기
+- form placeholder 스타일을 준다. (`::placeholder` 사용)
+- form invalid 스타일을 준다.
+- form에 입력이 될때 placeholder가 아래로 내려가는 것 처럼 보이는 효과를 준다.
+```html
+<form action="#" class="form">
+    <div class="u-margin-bottom-md">
+        <h2 class="heading-secondary">Start Booking Now</h2>
+    </div>
+    <div class="form__group">
+        <input type="text" class="form__input" placeholder="Full Name" id="name" required />
+        <label for="name" class="form__label">Full Name</label>
+    </div>
+    <div class="form__group">
+        <input type="email" class="form__input" placeholder="Email Address" id="email" required />
+        <label for="email" class="form__label">Email Address</label>
+    </div>
+</form>
+```
+```scss
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    padding: 1.5rem 2rem;
+    background-color: rgba($color-white, .5);
+    border-radius: 2px;
+    border: none;
+    border-bottom: 3px solid transparent; // focus일때 border 3px을 맞추기 위해서 transparent를 미리 적용
+    width: 90%;
+    display: block;
+    transition: all .3s;
+
+    &:focus {
+      outline: none;
+      border-bottom: 3px solid $color-primary;
+      box-shadow: 0 1rem 2rem rgba($color-black, .1);
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $color-secondary-dark; // invalid일 경우
+    }
+
+    &::placeholder {
+      color: $color-grey-dark-2; // placeholder에 스타일 주기
+    }
+
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+  }
+
+  &__input:placeholder-shown + &__label { //placeholder 가 보일 때, +는 sibiling 선택
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem); // 아래로 내려가는 효과를 주기위해서 미리 올려둠
+  }
+}
+```
+
+### solid linear-gradient 만들기 (clip-path 와 유사한 효과)
+- 아래 예제를 보면 50%에서는 white여야한다. 따라서 0~50%까지는 일정한 색이다. 50%부분에는 투명또한 있다, 50%~100%는 투명이다.
+- 50%부분을 중복으로 색으로 줘서 줄이 그어진듯이 나뉘는 효과가 된다. 105 각도로 사선으로 나뉜 효과를 줄 수 있다.
+```scss
+.book {
+  background-image: linear-gradient(105deg,
+          rgba($color-white, .9) 0%, 
+          rgba($color-white, .9) 50%, // 50% white
+          transparent 50%, // 50% transparent
+  ), url(../img/nat-10.jpg);
+  background-size: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+
+  height: 50rem;
+
+  &__form {
+    padding: 6rem;
+    width: 50%;
+  }
+}
+```
 
 ## Scss Directory
 ### utility directory
