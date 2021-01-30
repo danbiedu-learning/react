@@ -548,6 +548,10 @@
 
 ```
 
+### inline 스타일
+- 중앙정렬: `text-align: center` 로 할 수 있다. inline은 text와 같은 방식으로 처리되기 때문이다.
+- `display: inline-block` 으로 컨텐츠가 있는 범위까지만 border가 생기도록 할 수 있다.
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
