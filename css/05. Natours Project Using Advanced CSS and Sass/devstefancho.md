@@ -107,7 +107,7 @@
     display: inline-block;
     text-decoration: none;
     color: $color-primary;
-    font-size: $default-font-fize;
+    font-size: $default-font-size;
     padding: 3px;
     border-bottom: 1px solid $color-primary;
     text-shadow: 0 1rem 2rem rgba($color-black, .15);
@@ -474,6 +474,78 @@
     width: 50%;
   }
 }
+```
+
+### custom radio button 만들기
+- input의 radio는 custom css를 적용할 수 없기 때문에, none 으로 만들고, `:checked`를 활용하여 버튼을 만든다.
+- check가 됬을 경우에, 해당 `label`의 child인 `<span>`의 `::after`로 버튼 클릭을 표현해준다.
+```html
+<div class="form__group">
+  <div class="form__radio-group">
+    <input type="radio" class="form__radio-input" id="small" name="trip">
+    <label for="small" class="form__radio-label">
+      <span class="form__radio-button"></span>
+      Small tour group
+    </label>
+  </div>
+  <div class="form__radio-group">
+    <input type="radio" class="form__radio-input" id="large" name="trip">
+    <label for="large" class="form__radio-label">
+      <span class="form__radio-button"></span>
+      Large tour group
+    </label>
+  </div>
+</div>
+```
+```scss
+&__radio {
+  &-group {
+    width: 49%;
+    display: inline-block;
+  }
+
+  &-input {
+    display: none;
+  }
+
+  &-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem; // span element 와의 거리를 주기위함 (이거 없으면 겹침)
+  }
+
+  &-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: -.2rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      position: absolute;
+      background-color: $color-primary;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+  }
+}
+
+&__radio-input:checked ~ &__radio-label &__radio-button::after {
+  opacity: 1;
+}
+
 ```
 
 ## Scss Directory
