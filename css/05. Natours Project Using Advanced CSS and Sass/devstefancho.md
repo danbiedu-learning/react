@@ -40,6 +40,10 @@
 - How to use the `::input-placeholder` pseudo-element
 - How and when to use the `:focus`, `:invalid`, `placeholder-shown` and `:checked` pseudo-classes
 - Techniques to build custom radio buttons
+- What the "checkbox hack" is and how it works
+- How to create custom animation timing functions using cubic bezier curves
+- How to animate "solid-color gradients"
+- How and why to use `transform-origin`
 
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
@@ -453,7 +457,7 @@
 }
 ```
 
-### solid linear-gradient 만들기 (clip-path 와 유사한 효과)
+### <a name="solid-linear"></a>solid linear-gradient 만들기 (clip-path 와 유사한 효과)
 - 아래 예제를 보면 50%에서는 white여야한다. 따라서 0~50%까지는 일정한 색이다. 50%부분에는 투명또한 있다, 50%~100%는 투명이다.
 - 50%부분을 중복으로 색으로 줘서 줄이 그어진듯이 나뉘는 효과가 된다. 105 각도로 사선으로 나뉜 효과를 줄 수 있다.
 ```scss
@@ -552,6 +556,181 @@
 - 중앙정렬: `text-align: center` 로 할 수 있다. inline은 text와 같은 방식으로 처리되기 때문이다.
 - `display: inline-block` 으로 컨텐츠가 있는 범위까지만 border가 생기도록 할 수 있다.
 
+### navigation button 만들기 (checkbox 활용)
+- MENU 버튼을 누르면 뒤에있는 background(원형) 커지면서 화면전체가 덮히는 효과
+- 각 메뉴링크에 마우스를 올리면 linear-gradient를 활용하여 오른쪽에서 왼쪽으로 흰색으로 덮히는 효과 ([solid linear gradient 참고](#solid-linear))
+- hamburger 버튼을 만들 때, 하나의 `span`에 `::before`, `::after`를 추가하여 만들었다.
+```html
+<div class="navigation">
+  <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+  <label for="navi-toggle" class="navigation__button">MENU</label>
+  <div class="navigation__background">&nbsp;</div>
+  <nav class="navigation__nav">
+    <ul class="navigation__list">
+      <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>About Natours</a></li>
+      <li class="navigation__item"><a href="#" class="navigation__link"><span>02</span>Your benefits</a></li>
+      <li class="navigation__item"><a href="#" class="navigation__link"><span>03</span>Popular tours</a></li>
+      <li class="navigation__item"><a href="#" class="navigation__link"><span>04</span>Stories</a></li>
+      <li class="navigation__item"><a href="#" class="navigation__link"><span>05</span>Book now</a></li>
+    </ul>
+  </nav>
+</div>
+```
+```scss
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-white;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    z-index: 2000;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient($color-primary-light, $color-primary-dark);
+    z-index: 1000;
+    box-shadow: 0 1rem 3rem rgba($color-black, .5);
+    transition: all .8s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  &__nav {
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 1500;
+    opacity: 0;
+    width: 0;
+    transition: all .8s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  &__list {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-white;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(120deg,
+              transparent 0%,
+              transparent 50%,
+              $color-white 50%
+      );
+      background-size: 250%;
+      transition: all .5s;
+
+      span {
+        margin-right: 1.5rem;
+      }
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+
+  }
+
+  &__checkbox:checked ~ &__background {
+    transform: scale(100);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+  }
+
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before { top: -.8rem; }
+    &::after { top: .8rem; }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+
+    &::before {
+      transform: rotate(135deg);
+      top: 0;
+    }
+    &::after {
+      transform: rotate(-135deg);
+      top: 0;
+    }
+  }
+
+}
+```
+
+### cubic-beizer 로 easing function 직접 만들기
+animation easing function 만들어 보는 곳
+- [cubic-beizer.com](https://cubic-bezier.com/)
+- [easings.net](https://easings.net/)
+
+### transform-origin
+- transform에서 rotate같은 것을 할 때 기준점을 정할 수 있다. (정하지 않으면 default로 center 기준이 된다.)
+
 ## Scss Directory
 ### utility directory
 - text-center, margin-size 등의 여러군데에서 적용할 수 있는 css값들을 모아둔다.
@@ -562,10 +741,6 @@
 
 ### abstract directory
 - variable에서 `$default-font-size`를 지정해준다. (자주 사용하므로)
-
-
-
-
 
 
 
