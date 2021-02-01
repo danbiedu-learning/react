@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // 이 부분은 font 자체보다는 rem 을 위한 setup
+  font-size: 62.5%; // 1rem = 10px, 10/16 = 62.5%
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%; // 1rem = 9px, 9/16 = 50%
+  }
+
+  @include respond(phone) {
+    font-size: 30%; // 1rem = 9px, 9/16 = 50%
+  }
+
+}
+
+body {
+  box-sizing: border-box;
+}
