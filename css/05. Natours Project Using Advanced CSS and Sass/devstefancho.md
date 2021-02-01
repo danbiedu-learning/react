@@ -44,6 +44,11 @@
 - How to create custom animation timing functions using cubic bezier curves
 - How to animate "solid-color gradients"
 - How and why to use `transform-origin`
+- How to build a nice popup with only CSS
+- How to use the `:target` pseudo-class
+- How to create boxes with equal height using `display: table-cell`
+- How to create CSS text columns
+- How to automatically hyphenate words using `hyphens`
 
 ### calc
 - calc 내에서 여러가지 단위 조합으로 사용가능하다. (%, px, variable, etc... 을 섞어서 사용가능)
@@ -723,6 +728,14 @@
 }
 ```
 
+### absolute position
+> 부모중에서 position값이 define되어 있다면, static만 아니라면 containing block에 따른다. ([codepen](https://codepen.io/stefan-cho/pen/ZEBYKwx?editors=1100))
+> 코드펜의 예제를 보면 absolute는 relative가 아니라 부모 값을 무조건 따른다.
+>>reference 
+>>- [stackoverflow](https://stackoverflow.com/a/46509226/11650728)
+>>- [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block)
+
+
 ### cubic-beizer 로 easing function 직접 만들기
 animation easing function 만들어 보는 곳
 - [cubic-beizer.com](https://cubic-bezier.com/)
@@ -730,6 +743,110 @@ animation easing function 만들어 보는 곳
 
 ### transform-origin
 - transform에서 rotate같은 것을 할 때 기준점을 정할 수 있다. (정하지 않으면 default로 center 기준이 된다.)
+
+### popup modal 만들기
+- target이 된 경우, 발생하게 하고 target에서 벗어나면 지워지게 한다. target의 경우 id값을 anchor tag로 연결시켜준다.
+```html
+<a href="#popup" class="btn btn--white">Book now!</a>
+```
+```html
+<div class="popup" id="popup">
+  <div class="popup__content">
+<!--생략-->
+  </div>
+</div>
+```
+```scss
+.popup {
+  background-color: rgba($color-black, .8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden; // 클릭이 안되게 숨기려면 반드시 필요하다.
+  transition: all .3s;
+
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target &__content {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all .2s;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  &__content {
+    @include absCenter;
+
+    background-color: white;
+    margin: auto;
+    width: 75%;
+    box-shadow: 0 2rem 4rem rgba($color-black, .2);
+    border-radius: 5px;
+    display: table;
+    overflow: hidden;
+    transform: translate(-50%, -50%) scale(0.15); //absCenter의 transform값을 덮어쓰게 되므로, 필요한 값을 다시 모두 써줘야한다.
+    transition: all .8s;
+  }
+
+  &__left {
+    width: 33.3333%;
+    display: table-cell;
+  }
+
+  &__right {
+    width: 66.6667%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3rem 5rem;
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -moz-column-rule: 1px solid $color-grey-light-2;
+
+    column-count: 2; // 단을 나눈다.
+    column-gap: 4rem;
+    column-rule: 1px solid $color-grey-light-2; // 단 사이에 있는 줄
+
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto; // 다음줄로 넘어가게 되서 단어가 끊기는 경우, -으로 연결되게 한다.
+  }
+}
+```
 
 ## Scss Directory
 ### utility directory
