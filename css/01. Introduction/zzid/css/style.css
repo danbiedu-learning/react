@@ -1,0 +1,77 @@
+/* basic start with "cleaning" */
+* {
+  margin: 0;
+  padding: 0;
+  /* no margin, padding box setting */
+  box-sizing: border-box;
+}
+
+body {
+  /* will be inheritde under 'body'  */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7; /* 1.7 times bigger than pre-defined */
+  color: #777;
+  padding: 30px; /* won't be inherited*/
+}
+/*  */
+
+.header {
+  /* viewport height */
+  height: 95vh;
+
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 131, 0.8)
+    ),
+    url(../img/hero.jpg);
+  background-size: cover; /* trying to fit */
+  background-position: top;
+
+  /* x y, x y, x y, x y, ...  (clock wise) */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  /* this(position : realtive) is the origin of logo-box start */
+  position: relative;
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  
+  /* these two below is related with parent */
+  top: 40%;
+  left: 50%;
+
+  /* transform -50% is not belong to parent, element itself */
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+}
+.heading-primary-main {
+  /* block will line breaked */
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+}
+.heading-primary-sub {
+  /* block will line breaked */
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+}
