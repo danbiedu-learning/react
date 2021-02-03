@@ -55,6 +55,8 @@ body {
 
   /* transform -50% is not belong to parent, element itself */
   transform: translate(-50%, -50%);
+  /* below one can be, since just text. and displayed inline-block */
+  text-align: center;
 }
 
 .heading-primary {
@@ -63,6 +65,8 @@ body {
 
   /* to remove the shaking things when animation plays */
   backface-visibility: hidden;
+
+  margin-bottom: 60px;
 }
 .heading-primary-main {
   /* block will line breaked */
@@ -133,4 +137,38 @@ two types of animations in CSS
     opacity: 1;
     transform: translate(0);
   }
+}
+/* pseudo 'link' */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+
+  /* appear like just normal inline-block */
+  display: inline-block;
+
+  /* if number is big, it will be setted as the limit */
+  border-radius: 100px;
+
+  /* enable all the properties be animated  */
+  /* this should be here, 'initial state' */
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  /* box-shadow x y blur color */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+/* clicked */
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: white;
+  color: #777;
 }
