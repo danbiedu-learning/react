@@ -48,7 +48,7 @@ body {
 
 .text-box {
   position: absolute;
-  
+
   /* these two below is related with parent */
   top: 40%;
   left: 50%;
@@ -60,6 +60,9 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  /* to remove the shaking things when animation plays */
+  backface-visibility: hidden;
 }
 .heading-primary-main {
   /* block will line breaked */
@@ -67,6 +70,18 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+
+  /* delay before start animation */
+  /* animation-delay: 3s; */
+
+  /* how many time animation plays */
+  /* animation-iteration-count: 3; */
+
+  /* See MDN about timing function */
+  /* animation-timing-function: linear; */
 }
 .heading-primary-sub {
   /* block will line breaked */
@@ -74,4 +89,48 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+
+  /* short hand expression */
+  animation: moveInRight 1s;
+}
+
+/* 
+two types of animations in CSS
+
+1. transition property, change it with on event 
+2. keyframes
+*/
+@keyframes moveInLeft {
+  /* start */
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  /* middle */
+  80% {
+    transform: translateX(20px);
+  }
+
+  /* end, final */
+  100% {
+    opacity: 1;
+    transform: translate(0); /* 0 : original position */
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
 }
