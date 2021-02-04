@@ -138,6 +138,22 @@ two types of animations in CSS
     transform: translate(0);
   }
 }
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  80% {
+    transform: translateY(-4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 /* pseudo 'link' */
 .btn:link,
 .btn:visited {
@@ -154,6 +170,8 @@ two types of animations in CSS
   /* enable all the properties be animated  */
   /* this should be here, 'initial state' */
   transition: all 0.2s;
+
+  position: relative;
 }
 
 .btn:hover {
@@ -171,4 +189,39 @@ two types of animations in CSS
 .btn-white {
   background-color: white;
   color: #777;
+}
+
+/* after => treated like child of .btn */
+.btn::after {
+  /* content property in ::after is "necessary thing" */
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  /* initial state*/
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: white;
+}
+
+/* means:: when hover on btn then after should... */
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  /* name, duration function delay */
+  animation: moveInBottom 0.5s ease-out 0.75s;
+
+  /* set state to 0% style before animation start */
+  animation-fill-mode: backwards;
 }
