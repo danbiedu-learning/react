@@ -29,6 +29,12 @@ breakpoint는 media 사이즈를 나누는 기준점 정도로 생각하면 된�
     @if $breakpoint == tab-port { @media (max-width: 56.25em) { @content; }; }      // 900px
     @if $breakpoint == phone { @media (max-width: 37.5em) { @content; }; }          // 600px
 }
+/* breakpoints
+big-desktop : bigger than original
+tab-land : tablet-landscape size
+tab-port : tablet-portrait size
+phone : mobile size
+ */
 ```
 ```scss
 html {
