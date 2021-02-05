@@ -46,3 +46,6 @@ html {
     @include respond(phone) { font-size: 30%; }         // 1rem = 9px, 9/16 = 50%
 }
 ```
+
+### responsive size for phone
+- 휴대폰과 같이 터치하는 스크린은 hover을 쓰지 못하므로, hover 부분을 다 없애고, 앞뒤 뒤집히는 카드도, 뒤집히지 않도록 변경해줘야 한다.
