@@ -296,6 +296,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 10px;
     overflow: hidden;
@@ -573,7 +574,14 @@ body {
   z-index: 3000;
   opacity: 0;
   visibility: hidden;
-  transition: all .3s; }
+  transition: all .3s;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup:target {
     opacity: 1;
     visibility: visible; }
@@ -637,7 +645,7 @@ body {
   background-position: top;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
-  @media (min-resolution: 192dpi) and (min-width: 600px), (min-width: 2000px) {
+  @media (min-resolution: 192dpi) and (min-width: 600px), (-webkit-min-device-pixel-ratio: 2) and (min-width: 600px), (min-width: 2000px) {
     .header {
       background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.8), rgba(255, 119, 48, 0.8)), url(../img/hero.jpg); } }
   @media (max-width: 37.5em) {

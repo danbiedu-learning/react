@@ -5,6 +5,9 @@
 - How to implement responsive images in CSS
 - How to use resolution media queries to target high-resolution screens with 2x
 - How to combine multiple conditions in media queries
+- How to use `@supports` feature queries
+- Implement graceful degradation on selected properties
+- How to use `backdrop-filter`
 
 ## Responsive Design
 
@@ -74,13 +77,28 @@ html {
 ### media query에 resolution 조건주기
 - 아래와 같이 dpi를 조건에 추가할 수 있다.
 - comma(,)는 OR을 의미한다. 따라서 `192dpi이상이고, 600px이상` 혹은 `2000px이상`인 경우만 큰 이미지를 쓰게 한 것이다.
+- safari에서는 `min-resolution` 지원을 하지 않으므로 `-webkit-min-device-pixel-ratio`를 대신 사용한다.
 ```scss
 @media (min-resolution: 192dpi) and (min-width: 600px),
+(-webkit-min-device-pixel-ratio: 2) and (min-width: 600px),
 (min-width: 2000px) {
     background-image: linear-gradient(
                     to right bottom,
                     rgba($color-secondary-light, 0.8),
                     rgba($color-secondary-dark, 0.8)),
     url(../img/hero.jpg);
+}
+```
+
+### Testing for Browser Support with @supports
+- [CANIUSE.COM](https://caniuse.com/) 에서 css property를 modern browser에서 사용할 수 있는지 테스트할 수 있다.
+- `@supports`는 지원하는 경우에만 추가될 수 있게 해준다.
+- 지원여부만 확인하는 것이므로, value값은 아무거나 넣어줘도 된다. 하지만 꼭 필요는 하다. 
+  - (ex. clip-path가 지원되는 경우에 css를 추가한다면, `@supports (clip-path: polygon(0 0)) {  }` 이런식으로 아무 실제값으로 정의만 해주면 된다.)
+```scss
+@supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, .3);
 }
 ```
