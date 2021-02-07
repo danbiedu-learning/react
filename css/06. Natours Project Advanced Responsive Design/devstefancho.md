@@ -1,3 +1,8 @@
+## Task
+- How to use the `srcset` attribute on the `<img>` and `<source>` elements, together with density descriptors
+- How and why to use the `<picture>` element for art direction
+- How to write media queries in HTML
+
 ## Responsive Design
 
 ![responsive](./img/responsive.png)
@@ -49,3 +54,16 @@ html {
 
 ### responsive size for phone
 - 휴대폰과 같이 터치하는 스크린은 hover을 쓰지 못하므로, hover 부분을 다 없애고, 앞뒤 뒤집히는 카드도, 뒤집히지 않도록 변경해줘야 한다.
+
+## Responsive Image
+### Responsive 이미지가 무엇인가?
+![](./img/res_image.png)
+### Responsive 이미지의 Usage
+![](./img/res_image_usage.png)
+
+### 개발자도구에서 현재 이미지 소스보기
+![](./img/res_img_result.png)
+- 마우스를 올려서, currentSource를 확인할 수 있다.
+
+![](./img/res_img_resolution.png)
+- 해상도를 임의로 변경하여 테스트 할 수 있다. (안될때도 있음)
