@@ -2,6 +2,9 @@
 - How to use the `srcset` attribute on the `<img>` and `<source>` elements, together with density descriptors
 - How and why to use the `<picture>` element for art direction
 - How to write media queries in HTML
+- How to implement responsive images in CSS
+- How to use resolution media queries to target high-resolution screens with 2x
+- How to combine multiple conditions in media queries
 
 ## Responsive Design
 
@@ -67,3 +70,17 @@ html {
 
 ![](./img/res_img_resolution.png)
 - 해상도를 임의로 변경하여 테스트 할 수 있다. (안될때도 있음)
+
+### media query에 resolution 조건주기
+- 아래와 같이 dpi를 조건에 추가할 수 있다.
+- comma(,)는 OR을 의미한다. 따라서 `192dpi이상이고, 600px이상` 혹은 `2000px이상`인 경우만 큰 이미지를 쓰게 한 것이다.
+```scss
+@media (min-resolution: 192dpi) and (min-width: 600px),
+(min-width: 2000px) {
+    background-image: linear-gradient(
+                    to right bottom,
+                    rgba($color-secondary-light, 0.8),
+                    rgba($color-secondary-dark, 0.8)),
+    url(../img/hero.jpg);
+}
+```
