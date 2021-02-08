@@ -50,19 +50,19 @@ body {
   position: relative;
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   /* top: 40px; >> */
   top: 4rem;
   /* left: 40px; >> */
   left: 4rem;
 }
-.logo {
+.header__logo {
   /* height: 35px; >> */
   height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
 
   /* these two below is related with parent */
@@ -85,7 +85,7 @@ body {
   /* margin-bottom: 60px; >> */
   margin-bottom: 6rem;
 }
-.heading-primary-main {
+.heading-primary--main {
   /* block will line breaked */
   display: block;
   /* font-size: 60px; >> */
@@ -106,7 +106,7 @@ body {
   /* See MDN about timing function */
   /* animation-timing-function: linear; */
 }
-.heading-primary-sub {
+.heading-primary--sub {
   /* block will line breaked */
   display: block;
   /* font-size: 20px; >> */
@@ -217,7 +217,7 @@ two types of animations in CSS
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
   background-color: white;
   color: #777;
 }
@@ -241,7 +241,7 @@ two types of animations in CSS
   transition: all 0.4s;
 }
 
-.btn-white::after {
+.btn--white::after {
   background-color: white;
 }
 
@@ -251,7 +251,7 @@ two types of animations in CSS
   opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
   /* name, duration function delay */
   animation: moveInBottom 0.5s ease-out 0.75s;
 
