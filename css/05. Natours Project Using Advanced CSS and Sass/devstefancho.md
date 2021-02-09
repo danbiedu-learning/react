@@ -73,6 +73,22 @@
   
 }
 ```
+### last-child 제외하고 적용하기 (recommanded)
+- 지금의 크롬 브라우저나 PC 성능에서는 거의 눈치 채기 어려운데 예전에는 :not selector가 지원되지 않는 브라우저도 있었고 성능도 아주 좋지 않았습니다.
+```scss
+&:not(:last-child) {
+  background-color: red
+} // <- 이런식보다는
+
+& {
+  background-color: red
+}
+&(:last-child) {
+  background-color: transparent;
+}
+```
+- CSS뿐만 아니라 대부분의 모든 프로그래밍에서 마찬가지입니다. 특히 DB
+- 예를 들어 많은 데이터들의 타입 필드값이 A-Z 까지 있는데 Z 가 아닌것을 찾는 것보다는 (A,B,C,D,.....Y) 인 것을 찾는 게 훨씬 빠를 수 있습니다.
 
 ### attribute selector 활용
 - `^=` 시작문자 attribute 선택
