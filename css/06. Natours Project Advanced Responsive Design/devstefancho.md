@@ -109,3 +109,20 @@ html {
 - CONCATENATION: CSS 파일들을 합치기 (외부에서 갖고온 것들도 다 같이 합치기)
 - PREFIXING: -webkit과 같이 브라우저 prefix가 있는 것들은 다 붙이기
 - COMPRESSING: 파일크기 압축하기
+
+## 기타 사항
+### selection할때 스타일 주기
+```scss
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
+```
+
+### touch device인 경우 media query
+- 스크린이면서 56.25em 이하이거나, hover이 안되는 경우(모바일)
+```scss
+  @media only screen and (max-width: 56.25em),
+only screen and (hover: none) {
+}
+```
