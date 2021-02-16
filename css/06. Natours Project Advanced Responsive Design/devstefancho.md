@@ -102,3 +102,10 @@ html {
     background-color: rgba($color-black, .3);
 }
 ```
+
+## NPM 스크립트로 Build Process
+![](./img/build_process.png)
+- COMPILATION: Sass를 CSS로 변환
+- CONCATENATION: CSS 파일들을 합치기 (외부에서 갖고온 것들도 다 같이 합치기)
+- PREFIXING: -webkit과 같이 브라우저 prefix가 있는 것들은 다 붙이기
+- COMPRESSING: 파일크기 압축하기
