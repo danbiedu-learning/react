@@ -8,6 +8,9 @@
 - align-item: cross axis에 따름
     - baseline: text의 위치를 기준으로 정렬하게 된다.
 - flex-direction: column으로 바꾸면 main과 cross axis가 바뀐다. (justify-content가 세로축을 기준으로 적용되게 된다.)
+- align-content: 여러 row가 생겼을 때 정렬하는 방법
+- flex-wrap : container(display: flex)를 넘어갔을 때 container안에 wrap을 할건지
+    - `flex-wrap: wrap`은 넘어가면 새로운 row로 내린다.
 ### Flex Item
 ![](./img/flexbox-property.png)
 - align-self: align-item으로 적용된 정렬을 무시하고, item 스스로 정렬할 수 있음
