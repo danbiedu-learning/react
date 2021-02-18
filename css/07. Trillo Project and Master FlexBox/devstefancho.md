@@ -19,3 +19,27 @@
 - flex-shrink: 기본이 1, 줄어들지 않게 하려면 0으로 하면 된다.
 - flex-basis: flexbox에서는 width대신 flex-basis를 쓴다.
 - shorthand: `flex: flex-grow flex-shrink flex-basis` 로 쓰는것이 best practice이다.
+
+## CSS Variable
+### CSS Variable 사용 이유
+- pre-processor가 필요없다.
+- javascript, devtools에서 edit이 가능하다.
+- CSS variables는 cascade하고, inherit 된다.
+- 사용법은 custom class를 만들어도 되지만, 아래로만 inherit되므로 global하게 쓰기 위해서 `:root` 아래에 넣는다.
+  ```css
+  :root {
+    --color-primary: #eb2f64;
+    --color-primary-light: #FF3366;
+    --color-primary-dark: #BA265D;
+
+    --color-grey-light-1: #faf9f9;
+    --color-grey-light-2: #f4f2f2;
+    --color-grey-light-3: #f0eeee;
+    --color-grey-light-4: #ccc;
+
+    --color-grey-dark-1: #333;
+    --color-grey-dark-2: #777;
+    --color-grey-dark-3: #999;
+  }
+  ```
+
