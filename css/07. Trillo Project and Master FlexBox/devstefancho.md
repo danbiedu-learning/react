@@ -3,6 +3,9 @@
 - How to find, generate and use SVG sprites in HTML
 - How to change the color of an SVG icon in CSS
 - How to use more advanced flexbox alignment techniques, including `justify-content`, `align-items` and `flex`
+- How to use `scaleY` and multiple transition properties with different settings, to create a creative hover effect
+- How and why to use the `currentColor` CSS variable
+- How to use some more advanced flexbox alignment techniques, including `flex-direction`, `justify-content` and `align-items`
 
 ## Flexbox
 ![](./img/flexbox-concept.png)
@@ -151,4 +154,77 @@
       transform: translateY(2px); // 돋보기 버튼 눌렀을 때 push되는 효과
     }
   }
+```
+
+## Side Navigation
+- 마우스를 올렸을 때, 왼쪽에서 오른쪽으로 primary-color가 덮히는, animation 효과가 있는 사이드 bar이다.
+- `currentColor`로 현재 class의 `color`혹은 parent의 color를 받을 수 있다.
+- `z-index`는 `position`이 정의되어있는 곳에서만 효력이 있다.
+```scss
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+```
+```scss
+.side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 3.5rem;
+
+  &__item {
+    position: relative;
+    margin-bottom: .5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--color-primary);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition:
+            transform .2s,
+            width .4s cubic-bezier(1, 0, 0, 1) .2s,
+            background-color .1s;
+  }
+
+  &__item:hover::before,
+  &__item--active::before {
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  &__item:active::before {
+    background-color: var(--color-primary-light);
+  }
+
+  &__link {
+    color: var(--color-grey-light-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1.5rem 3rem;
+    position: relative; // z-index only works if we have specified position
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 2rem;
+    fill: currentColor; // 현재 color이거나, parent color를 따른다.
+  }
+}
 ```
