@@ -1,3 +1,9 @@
+## Task
+- Why to use SVG icons vs font icons
+- How to find, generate and use SVG sprites in HTML
+- How to change the color of an SVG icon in CSS
+- How to use more advanced flexbox alignment techniques, including `justify-content`, `align-items` and `flex`
+
 ## Flexbox
 ![](./img/flexbox-concept.png)
 ### Flex Container
@@ -43,3 +49,106 @@
   }
   ```
 
+## SVG
+### SVG icon website
+- icomoon.io 에 많이 있음
+- sprite: svg 파일을 한곳에서 사용할 수 있도록 한 파일로 모은 것
+- use를 사용해서 svg를 만들면 svg에 색상을 줄 수 있다.
+- 색상은 `fill`을 사용하면 된다.
+```html
+<nav class="user-nav">
+  <div class="user-nav__icon-box">
+    <svg class="user-nav__icon">
+      <use xlink:href="img/sprite.svg#icon-bookmark"></use>
+    </svg>
+    <span class="user-nav__notification">7</span>
+  </div>
+  <div class="user-nav__icon-box">
+    <svg class="user-nav__icon">
+      <use xlink:href="img/sprite.svg#icon-chat"></use>
+    </svg>
+    <span class="user-nav__notification">13</span>
+  </div>
+  <div class="user-nav__user">
+    <img src="img/profile.png" alt="User Photo" class="user-nav__user-photo">
+    <span class="user-nav__user-name">Stefan</span>
+  </div>
+</nav>
+```
+
+## Layout
+- Header (상단 위치)
+```scss
+.header {
+  font-size: 1.4rem; // header default font size
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--color-grey-light-2);
+
+  display: flex;
+  justify-content: space-between; // 상단 navigation을 왼, 가운데, 우측에 각각 위치 시킴
+  align-items: center; // cross axis 중앙 정렬
+}
+```
+- Header아래, 왼쪽 Sidebar
+```scss
+.sidebar {
+  background-color: var(--color-grey-dark-1);
+
+  flex: 0 0 18%; // grow, shrink없고 Header의 18% 차지하도록
+}
+```
+- Header아래, 오른쪽에 위치한 메인 컨텐츠
+```scss
+.hotel-view {
+  background-color: #fff;
+
+  flex: 1; // 남은 부분 차지할 수 있는 최대한 차지하도록
+}
+```
+
+## 검색 form 
+### 검색 form Styling
+```scss
+.search {
+  flex: 0 0 40%; // 검색 창 사이즈를 전체의 40%로 한다.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-family: inherit; //inherit 되지 않는 property는 `inherit` 값을 적용해준다.
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    transition: all .2s;
+    margin-right: -3.5rem; //검색 박스안에 돋보기 아이콘 넣는 방법: 검색박스의 margin-right를 (-)값으로 해준다.
+
+    &:focus {
+      outline: none; // focus 될때 outline 잡히는 것 제거
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-light-4);
+    }
+  }
+    
+  &__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+
+    &:focus {
+      outline: none; // focus 될때 outline 잡히는 것 제거
+    }
+    &:active {
+      transform: translateY(2px); // 돋보기 버튼 눌렀을 때 push되는 효과
+    }
+  }
+```
