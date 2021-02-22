@@ -6,6 +6,9 @@
 - How to use `scaleY` and multiple transition properties with different settings, to create a creative hover effect
 - How and why to use the `currentColor` CSS variable
 - How to use some more advanced flexbox alignment techniques, including `flex-direction`, `justify-content` and `align-items`
+- How to create an infinite animation
+- How to use `margin: auto` with flexbox, and why it's so powerful
+- Continue to use flexbox properties for easy positioning and alignment
 
 ## Flexbox
 ![](./img/flexbox-concept.png)
