@@ -9,6 +9,8 @@
 - How to create an infinite animation
 - How to use `margin: auto` with flexbox, and why it's so powerful
 - Continue to use flexbox properties for easy positioning and alignment
+- Continue to use flexbox, including `flex-wrap` to build a multi-column list
+- How and why to use CSS masks with `mask-image` and `mask-size`
 
 ## Flexbox
 ![](./img/flexbox-concept.png)
@@ -231,3 +233,64 @@
   }
 }
 ```
+
+## list style 만들기
+### list 앞에 붙는 > 모양 svg에 색깔 주기
+- mask로 svg부분만 background-color가 보이게하고, 나머지는 흰색으로 가려지게 하는 방법이다.
+```scss
+&__item::before {
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: .7rem;
+    
+  // Newer browsers - mask
+  background-color: var(--color-primary);
+  -webkit-mask-image: url(../img/chevron-thin-right.svg);
+  -webkit-mask-size: cover; // behave like background-size so it resize svg
+  mask-image: url(../img/chevron-thin-right.svg);
+  mask-size: cover; // behave like background-size so it resize svg
+}
+```
+
+## margin auto 활용하여 여백주기
+### margin auto를 활용하여 여백을 주는 방법 (space-between과 유사한 형태)
+- margin-right: auto를 주면 아래와 같은 형태가 된다. (user-name, user-date는 아래코드에서 생략함)
+  - `margin-right: auto`가 잡혀서 `.review__rating`과 `.review__user-box`사이에 남은 flex가 자동으로 채워지는 것을 알 수 있음
+  ![](./img/flex_margin_auto.png)
+```html
+<figcaption class="review__user">
+  <img src="img/user-2.jpg" alt="User 2" class="review__photo">
+  <div class="review__user-box">
+    <p class="review__user-name">Susan</p>
+    <p class="review__user-date">March 20rd, 2021</p>
+  </div>
+  <div class="review__rating">9.0</div>
+</figcaption>
+```
+```scss
+review {
+  &__photo {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+
+  &__user-box {
+    margin-right: auto;
+  }
+
+  &__rating {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-primary);
+  }
+  
+}
+```
+
+## `last-of-type` vs `last-child`
+### last-of-type
+- `:last-of-type`은 같은 element를 잡을 때 쓸 수 있다. `:last-child`와 용도가 비슷한 pseudo class이다.
