@@ -12,64 +12,7 @@ html {
   /* since 16px initial value of browser */ }
 
 body {
-  /* will be inheritde under 'body'  */
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; >> */
-  font-size: 1.6rem;
-  line-height: 1.7;
-  /* 1.7 times bigger than pre-defined */
-  color: #777;
-  /* padding: 30px; >> */
-  padding: 3rem;
-  /* no margin, padding box setting */
   box-sizing: border-box; }
-
-/*  */
-.header {
-  /* viewport height */
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  background-size: cover;
-  /* trying to fit */
-  background-position: top;
-  /* x y, x y, x y, x y, ...  (clock wise) */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /* this(position : realtive) is the origin of logo-box start */
-  position: relative; }
-  .header__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem; }
-  .header__logo {
-    height: 3.5rem; }
-  .header__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; }
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  /* to remove the shaking things when animation plays */
-  backface-visibility: hidden;
-  /* margin-bottom: 60px; >> */
-  margin-bottom: 6rem; }
-  .heading-primary--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-    animation-name: moveInLeft;
-    animation-duration: 1s; }
-  .heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.74rem;
-    animation: moveInRight 1s; }
 
 /* 
 two types of animations in CSS
@@ -117,6 +60,36 @@ two types of animations in CSS
     opacity: 1;
     transform: translate(0); } }
 
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  /* 1.7 times bigger than pre-defined */
+  color: #777;
+  padding: 3rem; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* to remove the shaking things when animation plays */
+  backface-visibility: hidden;
+  /* margin-bottom: 60px; >> */
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s; }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    animation: moveInRight 1s; }
+
 .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
@@ -158,3 +131,55 @@ two types of animations in CSS
 .btn--animated {
   animation: moveInBottom 0.5s ease-out 0.75s;
   animation-fill-mode: backwards; }
+
+.header {
+  /* viewport height */
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  /* trying to fit */
+  background-position: top;
+  /* x y, x y, x y, x y, ...  (clock wise) */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* this(position : realtive) is the origin of logo-box start */
+  position: relative; }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+.row {
+  max-width: 114rem;
+  background-color: #eee;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: '';
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    background-color: orangered;
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 *6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc( 2 * ((100% - 2 *6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 *6rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc( 2 * ((100% - 3 *6rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc( 3 * ((100% - 3 *6rem) / 4) + 2 * 6rem); }
