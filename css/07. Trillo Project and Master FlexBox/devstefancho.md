@@ -294,3 +294,21 @@ review {
 ## `last-of-type` vs `last-child`
 ### last-of-type
 - `:last-of-type`은 같은 element를 잡을 때 쓸 수 있다. `:last-child`와 용도가 비슷한 pseudo class이다.
+
+## Media Query
+### media query 사이즈 변수로 지정하기
+- 아래와 같이 max-width를 변수로 만들어서 적용할 수 있음
+```scss
+$bp-largest: 75em; //break-point, 1200px
+$bp-large: 68.75em; //break-point, 1100px
+$bp-medium: 56.25em; //break-point, 900px
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%; // large size에서는 default 글자크기를 8px로 줄임 (16*.5px)
+  }
+}
+```
