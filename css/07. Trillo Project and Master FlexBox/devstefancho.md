@@ -312,3 +312,41 @@ html {
   }
 }
 ```
+### media size에 따라 flex order 바꾸기
+- phone 사이즈만큼 작아지면 search-bar를 맨 끝 (`order: 1`)으로 보내고, 사이즈를 풀로 잡는다.
+  - 아래의 두번째 이미지를 보면 search-bar가 마지막 flex item으로 바뀌고, 100%를 차지하고 있다.
+  - flexbox가 여러 row를 갖도록 하기 위해서, `flex-wrap: wrap`을 한다.
+  ![](./img/media_large.png)
+  ![](./img/media_small.png)
+```scss
+.search {
+  flex: 0 0 40%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-grey-light-2);
+
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1; // search bar를 마지막 order로 (default order는 모두 0 이므로 마지막이 된다.)
+    flex: 0 0 100%; // 100% 사이즈를 차지한다.
+  }
+```
+```scss
+.header {
+  font-size: 1.4rem; // header default font size
+  height: 7rem;
+  background-color: #fff;
+  border-bottom: var(--line);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (max-width: $bp-smallest) {
+    flex-wrap: wrap;
+    height: 12rem;
+    align-content: space-around;
+  }
+}
+```
