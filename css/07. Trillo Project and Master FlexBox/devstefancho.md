@@ -350,3 +350,33 @@ html {
   }
 }
 ```
+## @supports 활용
+### supports를 활용하여 mask-image를 지원하는 브라우저와 지원하지 않는 브라우저 css 분리하기
+- `background-image`는 최신 브라우저에서도 값이 들어가므로, `none`처리를 했다.
+```scss
+&__item::before {
+  content: '';
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+  margin-right: .7rem;
+
+  // Older browsers
+  background-image: url(../img/chevron-thin-right.svg);
+  background-size: cover;
+
+  // Newer browsers - mask
+  @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+    background-color: var(--color-primary);
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-size: cover; // behave like background-size so it resize svg
+    mask-image: url(../img/chevron-thin-right.svg);
+    mask-size: cover; // behave like background-size so it resize svg
+    background-image: none;
+  }
+}
+```
+
+
+### challenge
+![](./img/and_more.png)
