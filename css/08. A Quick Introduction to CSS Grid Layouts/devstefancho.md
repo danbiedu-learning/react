@@ -40,3 +40,61 @@
     grid-column: 1 / -1; //만약 끝까지 늘리려면 minus값으로 하는게 낫다.
 }
 ```
+## Grid Challenge
+### Grid result
+- [codepen](https://codepen.io/stefan-cho/pen/gOLemEV)
+
+![](./img/grid_challenge.png)
+- 결과
+<p class="codepen" data-height="265" data-theme-id="dark" data-default-tab="html,result" data-user="stefan-cho" data-slug-hash="gOLemEV" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-challenge">
+  <span>See the Pen <a href="https://codepen.io/stefan-cho/pen/gOLemEV">
+  grid-challenge</a> by stefan-CHO (<a href="https://codepen.io/stefan-cho">@stefan-cho</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+### Naming Grid Lines
+- [codepen](https://codepen.io/stefan-cho/pen/yLVKwdm)
+- 각 grid에 이름을 붙일 수 있다.
+  - repeat의 앞뒤로 이름을 붙이면, 아래 예시에서는 `col-start 1`, `col-end 1`, `col-start 2`... 와 같은 형태로 사용할 수 있다.
+  ```scss
+  .main {
+    display: grid;
+    grid-template-columns: [main-start] repeat(3, [col-start] 1fr [col-end]) [main-end] 20% [grid-end];
+    grid-template-rows: [box-start sidebar-start] 40% [box-end main-start] 1fr [main-end sidebar-end];
+  }
+  ```
+
+### Naming Grid Areas
+- [codepen](https://codepen.io/stefan-cho/pen/qBqoveR)
+- grid-template-areas에 이름을 붙일 수 있다. __(주의: grid의 이름이 누락되면 안된다. dot(.)이라도 써줘야함.)__
+  - 사용하지 않는 곳 (empty space가 되길 원하는 곳)은 dot(.)을 써준다. (아래 예시)
+    ```scss
+    grid-template-areas:
+    'box box box .'
+    'main main main side';
+    ```
+  - matrix가 4X4, 5X5와 같이 작은 경우에 사용하면 좋다.
+  ```scss
+  .main {
+    background-color: #eee;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) 20%;
+    grid-template-rows: 40% 1fr;
+    grid-template-areas:
+    'box box box side'
+    'main main main side';
+    grid-gap: 20px;
+
+    & > * {
+      background-color: orangered;
+    }
+    .sidebar {
+      grid-area: side;
+    }
+    .main-content {
+      grid-area: main;
+    }
+  }
+  ```
