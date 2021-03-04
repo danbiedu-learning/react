@@ -2,6 +2,18 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
+        <script type="text/javascript">
+            var parser = new UAParser();
+            var browser = parser.getBrowser();
+            if (browser.name === "IE") {
+                alert(
+                    "이 웹페이지는 MS Internet Explorer 에서는 동작하지 않습니다. Chrome기반의 브라우저로 이용해 주세요."
+                );
+                window.location.href =
+                    "https://www.google.com/chrome/browser/desktop/index.html";
+            }
+        </script>
         <link
             href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
             rel="stylesheet"
