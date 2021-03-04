@@ -106,3 +106,51 @@
     - 주황색부분(점선) : implicit grid
     - 노란색부분(실선 및 dash선) : explicit grid
 ![](./img/grid_auto_layout.png)
+
+## Aligning
+- [codepen](https://codepen.io/stefan-cho/pen/wvoxaWb?editors=1100)
+### align items
+- 아래 코드에서 `justify-items` 와 `align-items` 부분이다. grid 내에 있는 각 item들에 대해서 정렬하는 방식이다. 기본값은 stretch 이다.
+### align tracks
+- container내에서 grid 전체를 맞출 때 쓴다. `justify-content` 와 `align-content` 이다. (아래 이미지에서는 쏠리는 가이드 점선이 쏠리는 것처럼 나왔는데 상관없음)
+### dense
+- `grid-auto-flow`에서 끝에 dense를 써주면, 아래 두번째 이미지처럼 꽉 채우게 된다. (grid의 기본 알고리즘이 최대한 순서에 맞추도록 되어있기 때문에, 빈공간이 발생할 수 있는 데 그곳을 메워줄 때 쓴다.)
+```scss
+.container {
+    width: 1000px;
+    height: 1000px;
+    padding: 20px;
+    margin: 30px auto;
+    background-color: #ddd;
+    
+    display: grid;
+    grid-template-rows: repeat(2, 150px);
+    grid-template-columns: repeat(2, 300px);
+    grid-gap: 30px;
+    
+    grid-auto-rows: 70px;
+    grid-auto-flow: row dense;
+
+    justify-content: center;
+    align-content: center;
+    
+    justify-items: stretch;
+    align-items: center;
+    
+    .item {
+        padding: 20px;
+        background-color: orangered;
+        
+        &--5 {
+            grid-column: 1/-1;
+        }
+        &--7 {
+            grid-column: 1/-1;
+        }
+    }
+}
+```
+- 기본상태
+  ![no dense](./img/grid_no_dense.png)
+- dense 적용 시
+  ![dense](./img/grid_dense.png)
