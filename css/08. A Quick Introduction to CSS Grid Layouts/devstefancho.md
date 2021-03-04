@@ -98,3 +98,11 @@
     }
   }
   ```
+  
+## Implicit vs Explicit Grid
+- [codepen](https://codepen.io/stefan-cho/pen/QWGBwmY)
+- 명시하지 않은 grid의 경우, `grid-auto-flow`, `grid-auto-columns`, `grid-auto-rows`로 사이즈 및 생성방향을 정해줄 수 있다.
+  - 아래는 Firefox 개발자 도구이다. (예제는 위 codepen)
+    - 주황색부분(점선) : implicit grid
+    - 노란색부분(실선 및 dash선) : explicit grid
+![](./img/grid_auto_layout.png)
