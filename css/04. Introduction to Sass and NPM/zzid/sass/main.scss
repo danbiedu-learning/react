@@ -9,121 +9,121 @@ $color-white: #fff;
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
 html {
-  /* root */
-  /* font-size: 10px; >> */
-  font-size: 62.5%; /* since 16px initial value of browser */
+    /* root */
+    /* font-size: 10px; >> */
+    font-size: 62.5%; /* since 16px initial value of browser */
 }
 
 body {
-  /* will be inheritde under 'body'  */
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; >> */
-  font-size: 1.6rem;
+    /* will be inheritde under 'body'  */
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; >> */
+    font-size: 1.6rem;
 
-  line-height: 1.7; /* 1.7 times bigger than pre-defined */
-  color: $color-grey-dark;
-  /* padding: 30px; >> */
-  padding: 3rem;
+    line-height: 1.7; /* 1.7 times bigger than pre-defined */
+    color: $color-grey-dark;
+    /* padding: 30px; >> */
+    padding: 3rem;
 
-  /* no margin, padding box setting */
-  box-sizing: border-box;
+    /* no margin, padding box setting */
+    box-sizing: border-box;
 }
 /*  */
 
 .header {
-  /* viewport height */
-  height: 95vh;
+    /* viewport height */
+    height: 95vh;
 
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light,0.8),
-      rgba($color-primary-dark,0.8)
-    ),
-    url(../img/hero.jpg);
-  background-size: cover; /* trying to fit */
-  background-position: top;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba($color-primary-light, 0.8),
+            rgba($color-primary-dark, 0.8)
+        ),
+        url(../img/hero.jpg);
+    background-size: cover; /* trying to fit */
+    background-position: top;
 
-  /* x y, x y, x y, x y, ...  (clock wise) */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /* x y, x y, x y, x y, ...  (clock wise) */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
-  /* this(position : realtive) is the origin of logo-box start */
-  position: relative;
+    /* this(position : realtive) is the origin of logo-box start */
+    position: relative;
 }
 
 .header__logo-box {
-  position: absolute;
-  /* top: 40px; >> */
-  top: 4rem;
-  /* left: 40px; >> */
-  left: 4rem;
+    position: absolute;
+    /* top: 40px; >> */
+    top: 4rem;
+    /* left: 40px; >> */
+    left: 4rem;
 }
 .header__logo {
-  /* height: 35px; >> */
-  height: 3.5rem;
+    /* height: 35px; >> */
+    height: 3.5rem;
 }
 
 .header__text-box {
-  position: absolute;
+    position: absolute;
 
-  /* these two below is related with parent */
-  top: 40%;
-  left: 50%;
+    /* these two below is related with parent */
+    top: 40%;
+    left: 50%;
 
-  /* transform -50% is not belong to parent, element itself */
-  transform: translate(-50%, -50%);
-  /* below one can be, since just text. and displayed inline-block */
-  text-align: center;
+    /* transform -50% is not belong to parent, element itself */
+    transform: translate(-50%, -50%);
+    /* below one can be, since just text. and displayed inline-block */
+    text-align: center;
 }
 
 .heading-primary {
-  color: $color-white;
-  text-transform: uppercase;
+    color: $color-white;
+    text-transform: uppercase;
 
-  /* to remove the shaking things when animation plays */
-  backface-visibility: hidden;
+    /* to remove the shaking things when animation plays */
+    backface-visibility: hidden;
 
-  /* margin-bottom: 60px; >> */
-  margin-bottom: 6rem;
+    /* margin-bottom: 60px; >> */
+    margin-bottom: 6rem;
 }
 .heading-primary--main {
-  /* block will line breaked */
-  display: block;
-  /* font-size: 60px; >> */
-  font-size: 6rem;
-  font-weight: 400;
-  /* letter-spacing: 35px; >> */
-  letter-spacing: 3.5rem;
+    /* block will line breaked */
+    display: block;
+    /* font-size: 60px; >> */
+    font-size: 6rem;
+    font-weight: 400;
+    /* letter-spacing: 35px; >> */
+    letter-spacing: 3.5rem;
 
-  animation-name: moveInLeft;
-  animation-duration: 1s;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
 
-  /* delay before start animation */
-  /* animation-delay: 3s; */
+    /* delay before start animation */
+    /* animation-delay: 3s; */
 
-  /* how many time animation plays */
-  /* animation-iteration-count: 3; */
+    /* how many time animation plays */
+    /* animation-iteration-count: 3; */
 
-  /* See MDN about timing function */
-  /* animation-timing-function: linear; */
+    /* See MDN about timing function */
+    /* animation-timing-function: linear; */
 }
 .heading-primary--sub {
-  /* block will line breaked */
-  display: block;
-  /* font-size: 20px; >> */
-  font-size: 2rem;
-  font-weight: 700;
-  /* letter-spacing: 17.4px; >> */
-  letter-spacing: 1.74rem;
+    /* block will line breaked */
+    display: block;
+    /* font-size: 20px; >> */
+    font-size: 2rem;
+    font-weight: 700;
+    /* letter-spacing: 17.4px; >> */
+    letter-spacing: 1.74rem;
 
-  /* short hand expression */
-  animation: moveInRight 1s;
+    /* short hand expression */
+    animation: moveInRight 1s;
 }
 
 /* 
@@ -133,135 +133,158 @@ two types of animations in CSS
 2. keyframes
 */
 @keyframes moveInLeft {
-  /* start */
-  0% {
-    opacity: 0;
-    /* transform: translateX(-100px); >> */
-    transform: translateX(-10rem);
-  }
+    /* start */
+    0% {
+        opacity: 0;
+        /* transform: translateX(-100px); >> */
+        transform: translateX(-10rem);
+    }
 
-  /* middle */
-  80% {
-    /* transform: translateX(20px); >> */
-    transform: translateX(2rem);
-  }
+    /* middle */
+    80% {
+        /* transform: translateX(20px); >> */
+        transform: translateX(2rem);
+    }
 
-  /* end, final */
-  100% {
-    opacity: 1;
-    transform: translate(0); /* 0 : original position */
-  }
+    /* end, final */
+    100% {
+        opacity: 1;
+        transform: translate(0); /* 0 : original position */
+    }
 }
 
 @keyframes moveInRight {
-  0% {
-    opacity: 0;
-    /* transform: translateX(100px); >> */
-    transform: translateX(10rem);
-  }
+    0% {
+        opacity: 0;
+        /* transform: translateX(100px); >> */
+        transform: translateX(10rem);
+    }
 
-  80% {
-    /* transform: translateX(-20px); >> */
-    transform: translateX(-2rem);
-  }
+    80% {
+        /* transform: translateX(-20px); >> */
+        transform: translateX(-2rem);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 @keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    /* transform: translateY(30px); >> */
-    transform: translateY(3rem);
-  }
+    0% {
+        opacity: 0;
+        /* transform: translateY(30px); >> */
+        transform: translateY(3rem);
+    }
 
-  80% {
-    /* transform: translateY(-4px); >> */
-    transform: translateY(-0.4rem);
-  }
+    80% {
+        /* transform: translateY(-4px); >> */
+        transform: translateY(-0.4rem);
+    }
 
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 
 /* pseudo 'link' */
 .btn:link,
 .btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  /* padding: 15px 40px; >> */
-  padding: 1.5rem 4rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    /* padding: 15px 40px; >> */
+    padding: 1.5rem 4rem;
 
-  /* appear like just normal inline-block */
-  display: inline-block;
+    /* appear like just normal inline-block */
+    display: inline-block;
 
-  /* if number is big, it will be setted as the limit */
-  border-radius: 100px;
+    /* if number is big, it will be setted as the limit */
+    border-radius: 100px;
 
-  /* enable all the properties be animated  */
-  /* this should be here, 'initial state' */
-  transition: all 0.2s;
+    /* enable all the properties be animated  */
+    /* this should be here, 'initial state' */
+    transition: all 0.2s;
 
-  position: relative;
+    position: relative;
 }
 
 .btn:hover {
-  /* transform: translateY(-3px); >> */
-  transform: translateY(-0.3rem);
+    /* transform: translateY(-3px); >> */
+    transform: translateY(-0.3rem);
 
-  /* box-shadow x y blur color */
-  /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); >> */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /* box-shadow x y blur color */
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); >> */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 /* clicked */
 .btn:active {
-  transform: translateY(-1px);
-  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); >> */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); >> */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn--white {
-  background-color: $color-white;
-  color: $color-grey-dark;
+    background-color: $color-white;
+    color: $color-grey-dark;
 }
 
 /* after => treated like child of .btn */
 .btn::after {
-  /* content property in ::after is "necessary thing" */
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  /* border-radius: 100px; >> */
-  border-radius: 10rem;
+    /* content property in ::after is "necessary thing" */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    /* border-radius: 100px; >> */
+    border-radius: 10rem;
 
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 
-  /* initial state*/
-  transition: all 0.4s;
+    /* initial state*/
+    transition: all 0.4s;
 }
 
 .btn--white::after {
-  background-color: $color-white;
+    background-color: $color-white;
 }
 
 /* means:: when hover on btn then after should... */
 .btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
 }
 
 .btn--animated {
-  /* name, duration function delay */
-  animation: moveInBottom 0.5s ease-out 0.75s;
+    /* name, duration function delay */
+    animation: moveInBottom 0.5s ease-out 0.75s;
 
-  /* set state to 0% style before animation start */
-  animation-fill-mode: backwards;
+    /* set state to 0% style before animation start */
+    animation-fill-mode: backwards;
+}
+
+@keyframes onAndOff {
+    0% {
+        &:before {
+            opacity: 0;
+        }
+        color: black;
+    }
+
+    50% {
+        &:before {
+            opacity: 1;
+        }
+        color: white;
+    }
+
+    100% {
+        &:before {
+            opacity: 0;
+        }
+        color: black;
+    }
 }
