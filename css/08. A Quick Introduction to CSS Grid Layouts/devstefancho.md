@@ -154,3 +154,16 @@
   ![no dense](./img/grid_no_dense.png)
 - dense 적용 시
   ![dense](./img/grid_dense.png)
+  
+## Using min-content, max-content, minmax, auto-fill, auto-fit
+- `min-content` : content의 최소 사이즈에 맞춤
+- `max-content` : content의 최대 사이즈에 맞춤
+- `minmax({min값}, {max값})` : 항상 min값과 max값 사이값 (즉 min보다 작으면 min값, max보다 크면 max값)
+- `auto-fill` : 자동으로 계산하여 나눔 (height 1000px을 100px로 `repeat(auto-fill, 100px)` 하면 100px의 column 10개 생김)
+- `auto-fit` : available space에 맞춤 (`repeat(auto-fit, minmax(100px, 1fr))`이면 사이즈가 줄어들면 grid를 추가로 만듦, empty column(혹은 row) must not occupy any space)
+  - auto-fill와 비교하면 auto-fit의 경우도 column이 10개 생기지만, content가 없는 column의 경우 0px의 사이즈가 된다.
+  - auto-fit은 media query 없이도 responsive 디자인이 가능하게 한다. (이 때 width, height는 %로 잡아줘야한다. fix 된 px사이즈로 잡으면, 브라우저 사이즈 상관없이 minmax사이즈가 정해지기 때문에)
+  
+- [codepen](https://codepen.io/stefan-cho/pen/jOVvrLB)
+  
+  ![](./img/grid_auto_fit.gif)
