@@ -2,11 +2,23 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
+        <script type="text/javascript">
+            var parser = new UAParser();
+            var browser = parser.getBrowser();
+            if (browser.name === "IE") {
+                alert(
+                    "이 웹페이지는 MS Internet Explorer 에서는 동작하지 않습니다. Chrome기반의 브라우저로 이용해 주세요."
+                );
+                window.location.href =
+                    "https://www.google.com/chrome/browser/desktop/index.html";
+            }
+        </script>
         <link
             href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
             rel="stylesheet"
         />
-
+        <link rel="stylesheet" href="css/icon-font.css" />
         <link rel="stylesheet" href="css/style.css" />
         <title>Document</title>
     </head>
@@ -34,8 +46,135 @@
                 >
             </div>
         </header>
+        <main>
+            <section class="section-about">
+                <div class="u-center-text u-margin-bottom-big">
+                    <h2 class="heading-secondary">
+                        Exciting tours for adventurous people
+                    </h2>
+                </div>
 
-        <section class="gird-test">
+                <div class="row">
+                    <div class="col-1-of-2">
+                        Text content
+                        <h3 class="heading-tertiary u-margin-bottom-small">
+                            You're going to fall in love with nature
+                        </h3>
+                        <p class="paragraph">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Fugit ex asperiores itaque nobis neque?
+                            Perspiciatis a officia nam inventore itaque eveniet
+                            impedit deserunt, libero cupiditate voluptate?
+                            Officia molestiae nesciunt cum.
+                        </p>
+                        <h3 class="heading-tertiary u-margin-bottom-small">
+                            Live adventrues like you never have before
+                        </h3>
+                        <p class="paragraph">Lorem ipsum dolor sit amet</p>
+                        <a href="" class="btn-text">Learn more &rarr;</a>
+                    </div>
+                    <div class="col-1-of-2">
+                        <div class="composition">
+                            <img
+                                src="img/nat-1-large.jpg"
+                                alt="Photo 1"
+                                class="composition__photo composition__photo--p1"
+                            />
+                            <img
+                                src="img/nat-2-large.jpg"
+                                alt="Photo 2"
+                                class="composition__photo composition__photo--p2"
+                            />
+                            <img
+                                src="img/nat-3-large.jpg"
+                                alt="Photo 3"
+                                class="composition__photo composition__photo--p3"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-features">
+                <div class="row">
+                    <div class="col-1-of-4">
+                        <div class="feature-box">
+                            <i class="feature-box__icon icon-basic-world"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">
+                                Explore the world
+                            </h3>
+                            <p class="feature-box__text">
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Dolorem alias rerum
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-1-of-4">
+                        <div class="feature-box">
+                            <i class="feature-box__icon icon-basic-compass"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">
+                                Meet nature
+                            </h3>
+                            <p class="feature-box__text">
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Dolorem alias rerum
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-1-of-4">
+                        <div class="feature-box">
+                            <i class="feature-box__icon icon-basic-map"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">
+                                Find your way
+                            </h3>
+                            <p class="feature-box__text">
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Dolorem alias rerum
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-1-of-4">
+                        <div class="feature-box">
+                            <i class="feature-box__icon icon-basic-heart"></i>
+                            <h3 class="heading-tertiary u-margin-bottom-small">
+                                Live a healtier life
+                            </h3>
+                            <p class="feature-box__text">
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Dolorem alias rerum
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-tours">
+                <div class="u-center-text u-margin-bottom-big">
+                    <h2 class="heading-secondary">Most popular tours</h2>
+                </div>
+                <div class="row">
+                    <div class="col-1-of-3">
+                        <div class="card">
+                            <div class="card__side card__side--front">
+                                Front
+                            </div>
+                            <div
+                                class="card__side card__side--back card__side--back-1"
+                            >
+                                Back
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1-of-3">
+                        <div class="card">Card Text</div>
+                    </div>
+                    <div class="col-1-of-3">
+                        <div class="card">Card Text</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- <section class="gird-test">
             <div class="row">
                 <div class="col-1-of-2">col 1 of 2</div>
                 <div class="col-1-of-2">col 1 of 2</div>
@@ -69,7 +208,6 @@
                 <div class="col-1-of-4">col 1 of 4</div>
                 <div class="col-3-of-4">col 3 of 4</div>
             </div>
-        </section>
+        </section> -->
     </body>
 </html>
-`
