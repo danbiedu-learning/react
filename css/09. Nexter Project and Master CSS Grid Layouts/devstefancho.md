@@ -1,6 +1,9 @@
 ## Task
 - How to build a complex and modern layout using advanced CSS Grid techniques
 - How to choose different row and column track sizes for different types of content
+- How and why to create girds inside of grids
+- How to create a responsive component without media queries
+- How to build a small component using CSS grid
 
 ## grid-template
 ### min-content
