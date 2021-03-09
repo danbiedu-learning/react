@@ -12,6 +12,7 @@
     background-position: top;
 
     /* x y, x y, x y, x y, ...  (clock wise) */
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
     /* this(position : realtive) is the origin of logo-box start */
