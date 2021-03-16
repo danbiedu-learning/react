@@ -4,6 +4,9 @@
 - How and why to create girds inside of grids
 - How to create a responsive component without media queries
 - How to build a small component using CSS grid
+- How to deal with overlapping grid items
+- Why images are special and behave differently than other grid items
+- How to decide if flexbox is a better tool in certain situations
 
 ## grid-template
 ### min-content
@@ -30,3 +33,38 @@
 ## Responsive Grid
 ### media query 없이 responsive grid 만들기
 - `grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));`와 같이 auto-fit 과 minmax의 조합으로 만들 수 있다.
+
+## Grid vs Flexbox
+- 1 dimension 이라면 flexbox가 유리하다. (아래 Flexbox과 Grid방식을 비교해보자. 결과는 같다.)
+```scss
+.story {
+  &__pictures {
+    background-color: $color-primary;
+    grid-column: full-start / col-end 4;
+  }
+
+  &__content {
+    background-color: $color-grey-light-1;
+    grid-column: col-start 5 / full-end;
+
+    padding: 6rem 8vw;
+
+    // Flexbox 방식
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    // Grid 방식
+    display: grid;
+    align-content: center;
+    justify-items: start;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+}
+```
