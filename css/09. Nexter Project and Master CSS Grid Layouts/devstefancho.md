@@ -21,3 +21,12 @@
         [center-end] minmax(6rem, 1fr) [full-end];
 }
 ```
+
+## Explicit Grid
+### `grid-row: 1 / -1;`의 의미
+- `-1`은 explicit grid의 가장 끝 부분을 의미한다.
+- auto로 생성된 implicit grid가 끝에 있다면 -1로 잡을 수 없다. `span {숫자}` 혹은 `{숫자}`로 정해줘야 auto로 생성된 끝에 있는 implicit grid를 잡을 수 있다.
+
+## Responsive Grid
+### media query 없이 responsive grid 만들기
+- `grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));`와 같이 auto-fit 과 minmax의 조합으로 만들 수 있다.
