@@ -68,3 +68,16 @@
   }
 }
 ```
+## Image in Grid
+### Image가 grid 내에서 center 되도록
+- image는 비율때문에 grid를 채우지 못할 수 있다. 따라서 중간정렬을 해줘야한다.
+- `align-items: center;` grid area에서 center 되도록
+  - before
+![](./img/before-align.png)
+  - after
+![](./img/after-align.png)
+    
+### image overlay
+- image를 background로 쓸때, 자연스러움을 줄 수 있다.
+- `background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary, .5)), url(../img/back.jpg);` overlay 효과
+![](./img/image-overlay.png)
