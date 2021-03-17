@@ -7,6 +7,7 @@
 - How to deal with overlapping grid items
 - Why images are special and behave differently than other grid items
 - How to decide if flexbox is a better tool in certain situations
+- How to build a rather complex component using a mix of CSS Grid properties, overlapping and flexbox
 
 ## grid-template
 ### min-content
@@ -81,3 +82,6 @@
 - image를 background로 쓸때, 자연스러움을 줄 수 있다.
 - `background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary, .5)), url(../img/back.jpg);` overlay 효과
 ![](./img/image-overlay.png)
+  
+## Card 만들기
+- _home.scss의 `.home`을 참고
