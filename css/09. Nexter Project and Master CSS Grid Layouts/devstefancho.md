@@ -8,6 +8,8 @@
 - Why images are special and behave differently than other grid items
 - How to decide if flexbox is a better tool in certain situations
 - How to build a rather complex component using a mix of CSS Grid properties, overlapping and flexbox
+- How to create a complex grid-looking gallery
+- Using `object-fit` together with images for grid items
 
 ## grid-template
 ### min-content
@@ -85,3 +87,24 @@
   
 ## Card 만들기
 - _home.scss의 `.home`을 참고
+
+## Gallery 만들기
+### `object-fit` & `figure`
+- `figure` element에 `grid-row`, `grid-column`을 줘서 grid 배치를 한다. (img는 figure내부에서 100% `object-fit: cover`되도록 한다.)
+- `object-fit`은 `width`, `height` 둘다 값을 지정해야 적용된다. (아래에는 둘다 100%로 지정)
+- image는 inline으로 적용되서, 끝부분에 공간이 뜨는 경우가 있으므로, `display: block`을 해줌
+```html
+<figure class="gallery__item gallery__item--1">
+  <img src="./img/gal-1.jpeg" alt="Gallery 1" class="gallery__img">
+</figure>
+```
+```scss
+// code location : _gallery.scss
+&__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+```
+![](./img/gallery.png)
