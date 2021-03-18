@@ -10,6 +10,8 @@
 - How to build a rather complex component using a mix of CSS Grid properties, overlapping and flexbox
 - How to create a complex grid-looking gallery
 - Using `object-fit` together with images for grid items
+- How to manage vertical spacing in a responsive layout using CSS Grid techniques
+- How to use `::before` and `::after` as grid items
 
 ## grid-template
 ### min-content
@@ -120,3 +122,64 @@
   margin-right: auto;
 }
 ```
+
+## Grid로 한쪽으로 몰아넣기
+### 1fr 사용
+- `grid-template-rows: 1fr;` 이렇게 첫번째 row가 남은 공간을 다 사용하기때문에 한쪽으로 몰아넣을 수 있다. (아래 참고 이미지 : 빨간색 영역이 1fr)
+![](./img/1fr.png)
+
+## Styling Grid
+![](./img/logo_style.png)
+### text 하나만 들어있어도 grid를 사용할 수 있다.
+- `::before`, `::after`를 이용해서, text 하나만 들어 있어도 아래와 같은 스타일링이 가능하다.
+```html
+<div class="header__seenon-text">Seen on</div>
+```
+```scss
+header__seenon-text {
+  display: grid;
+  // 1fr은 작대기(-)가 차지하는 공간 
+  // 만약 max-content가 아니라, min-content로 하면 Seen과 on이 line break된다.
+  grid-template-columns: 1fr max-content 1fr; 
+  grid-column-gap: 1rem;
+  color: $color-grey-light-2;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 1px;
+    background-color: currentColor; // parent의 color 그대로 가져오기
+    align-self: center; // 선을 vertically center
+  }
+}
+```
+### logo에 filter 주기
+- logo에 filter를 줘서 고급스러운 느낌을 준다.
+```html
+<div class="header__seenon-logos">
+  <img src="img/logo-bbc.png" alt="logo 1">
+  <img src="img/logo-forbes.png" alt="logo 2">
+  <img src="img/logo-techcrunch.png" alt="logo 3">
+  <img src="img/logo-bi.png" alt="logo 4">
+</div>
+```
+```scss
+&__seenon-logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 3rem;
+  justify-items: center;
+  filter: brightness(70%);
+
+  img {
+    height: 2.5rem;
+  }
+}
+```
+
+## background image
+### background에 opacity 느낌주기
+- background-image에 linear-gradient 단일색상을 입혀 opacity한 느낌을 준다.
+  - `background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)), url(../img/hero.jpeg);`
+![](./img/background-image.png)
+
