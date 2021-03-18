@@ -108,3 +108,15 @@
 }
 ```
 ![](./img/gallery.png)
+
+## margin auto
+### margin-left and margin-right를 auto로 하면
+- block에서 margin left와 right를 auto로 하면, 중앙정렬이 가능하다.
+- [codepan](https://codepen.io/stefan-cho/pen/YzpowBE)
+```css
+.example {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
