@@ -183,3 +183,25 @@ header__seenon-text {
   - `background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)), url(../img/hero.jpeg);`
 ![](./img/background-image.png)
 
+## Responsive Grid
+### grid name
+- grid name을 지정하지 않고, 숫자로 하게 되면, media query를 지정해줄 때마다 큰 혼란이 생김 
+  - (숫자를 바뀌기 때문에, 예를 들어 왼쪽의 사이드바를 상단으로 옮기는 경우 column의 숫자와 row의 숫자가 전체적으로 바뀌게 된다.)
+  - media query 적용 시, `grid-row`, `grid-column`, `justify-content`, `align-items` 등을 조정하면서 맞춘다. (아래 코드 예시, 왼쪽 사이드바를 화면사이즈가 작아짐에 따라 상단으로 옮김)
+```scss
+.sidebar {
+background-color: $color-primary;
+grid-column: sidebar-start / sidebar-end;
+grid-row: 1 / -1;
+
+    @media only screen and (max-width: $bp-largest) {
+        grid-column: 1 / -1;
+        grid-row: 1 / 2;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    display: flex;
+    justify-content: center;
+}
+```
