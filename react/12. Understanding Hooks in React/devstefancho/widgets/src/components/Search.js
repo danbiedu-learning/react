@@ -5,6 +5,19 @@ import parse from 'html-react-parser';
 const Search = () => {
     const [term, setTerm] = useState('programming');
     const [results, setResults] = useState([]);
+    const [debouncedTerm, setDebouncedTerm] = useState(term);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (term) {
+                setDebouncedTerm(term);
+            }
+        }, 500);
+
+        return () => {
+            clearTimeout(timeoutId);
+        }
+    }, [term]);
 
     useEffect(() => {
         const search = async () => {
@@ -14,29 +27,16 @@ const Search = () => {
                     list: 'search',
                     origin: '*',
                     format: 'json',
-                    srsearch: term
+                    srsearch: debouncedTerm
                 },
             });
 
             setResults(data.query.search);
         };
 
-        if (term && !results.length) {
-            // initial state without delay
-            search();
-        } else {
-            const timeoutId = setTimeout(() => {
-                if (term) {
-                    search();
-                }
-            }, 500);
+        search();
 
-            return () => {
-                clearTimeout(timeoutId);
-            }
-        }
-
-    }, [term]);
+    }, [debouncedTerm]);
 
     const onChangeTerm = (e) => {
         setTerm(e.target.value);

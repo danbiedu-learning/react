@@ -72,7 +72,98 @@ class Accordion extends React.Component {
 ![](./img/setTimeout.png)
 - useEffect의 return에는 function을 넣는다. 이것은 다음 useEffect에서 invoke된다. 이때 clearTimeout을 실행시켜준다. (아래그림)
 ![](./img/cleanup_func.png)
+  
+### debounce useEffect function 추가하기 (이유)
+- 아래와 같이 warning이 발생하는 것은, useEffect안에 있는 모든 state, props를 dependency에 넣지 않았기 때문이다.
+![](./img/useEffect_warning.png)
+- warning을 없애기 위해서 deps에 `result.length`를 추가하니, api 호출이 한번더 발생한다. (re-render되었기 때문)
+![](./img/useEffect_warning_deps.png)
+- 아래그림에서 최초 랜더링(새로고침)에서 똑같은 api가 두번 호출된 것을 확인할 수 있다.
+![](./img/useEffect_warning_api_twice_call.png)
+- 아래그림은 re-render된 이유이다.
+![](./img/useEffect_warning_reason.png)
+  
+### debounce useEffect function 추가
+- debounce용 useEffect를 하나 추가해서 위 현상을 해결한다. 
+- debounce state용 useEffect는 term(입력값)의 변화에만 의존한다. 최종적으로 term변화가 일어났는지에 따라 search용 useEffect가 발생하게 된다.
+  - debounce 적용된 경우, 빠르게(timeout 시간내에) input값을 지우고, 같은 input으로 검색하면 api를 호출하지 않는다. (term이 바뀌지 않았으므로)
+- 아래 두 코드를 비교해본다. (첫번째는 debounce 적용하지 않음, 두번째는 debounce 적용)
+```js
+// 1. debounce 적용안한 코드 (warning 있음, api 두번호출함)
+const [term, setTerm] = useState('programming');
+const [results, setResults] = useState([]);
 
+useEffect(() => {
+  const search = async () => {
+    const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
+      params: {
+        action: 'query',
+        list: 'search',
+        origin: '*',
+        format: 'json',
+        srsearch: term
+      },
+    });
+
+    setResults(data.query.search);
+  };
+
+  if (term && !results.length) {
+    // initial state without delay
+    search();
+  } else {
+    const timeoutId = setTimeout(() => {
+      if (term) {
+        search();
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }
+
+}, [term, results.length]);
+
+```
+```js
+// 2. debounce용 useEffect 추가
+const [term, setTerm] = useState('programming');
+const [results, setResults] = useState([]);
+const [debouncedTerm, setDebouncedTerm] = useState(term);
+
+useEffect(() => {
+  const timeoutId = setTimeout(() => {
+    if (term) {
+      setDebouncedTerm(term);
+    }
+  }, 500);
+
+  return () => {
+    clearTimeout(timeoutId);
+  }
+}, [term]);
+
+useEffect(() => {
+  const search = async () => {
+    const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
+      params: {
+        action: 'query',
+        list: 'search',
+        origin: '*',
+        format: 'json',
+        srsearch: debouncedTerm
+      },
+    });
+
+    setResults(data.query.search);
+  };
+
+  search();
+
+}, [debouncedTerm]);
+```
+  
   
 ### dangerouslySetInnerHTML
 - 다른 html을 jsx안에서 랜더링하고 싶을 때
