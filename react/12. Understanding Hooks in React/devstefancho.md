@@ -64,6 +64,22 @@ class Accordion extends React.Component {
 - something like life methods라고 설명되어 있다. 즉 life cycle methods는 아니고 유사한 방식이라는 것이다.
 ![](./img/useEffect.png)
 ![](./img/useEffect_render.png)
+  
+### useEffect로 Throttling
+- 아래와 같이 throttling으로 이전 타이머를 취소한다. (아래그림)
+![](./img/throttling.png)
+- setTimeout은 id가 있다, 이것을 clearTimeout으로 취소할 수 있다. (아래그림)
+![](./img/setTimeout.png)
+- useEffect의 return에는 function을 넣는다. 이것은 다음 useEffect에서 invoke된다. 이때 clearTimeout을 실행시켜준다. (아래그림)
+![](./img/cleanup_func.png)
+
+  
+### dangerouslySetInnerHTML
+- 다른 html을 jsx안에서 랜더링하고 싶을 때
+- 갖고오는 html(아래에서는 result.snippet)이 100% 신뢰할만한 사이트의 html이 아니라면 XSS(Cross Site Scripting) attack을 받을 수 있으므로 상당히 위험하다.
+```js
+<span dangerouslySetInnerHTML={{ __html: result.snippet}}></span>
+```
 
 ## cdnjs
 - [cdnjs](https://cdnjs.com/) 에서 필요한 cdn url검색 (ex. semantic ui 검색)

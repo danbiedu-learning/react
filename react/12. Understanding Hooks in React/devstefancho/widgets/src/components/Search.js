@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import parse from 'html-react-parser';
 
 const Search = () => {
     const [term, setTerm] = useState('programming');
@@ -20,7 +21,21 @@ const Search = () => {
             setResults(data.query.search);
         };
 
-        search();
+        if (term && !results.length) {
+            // initial state without delay
+            search();
+        } else {
+            const timeoutId = setTimeout(() => {
+                if (term) {
+                    search();
+                }
+            }, 500);
+
+            return () => {
+                clearTimeout(timeoutId);
+            }
+        }
+
     }, [term]);
 
     const onChangeTerm = (e) => {
@@ -30,11 +45,20 @@ const Search = () => {
     const renderedResult = results.map(result => {
         return (
             <div className="item" key={result.pageid}>
+                <div className="right floated content">
+                    <a
+                        className="ui button"
+                        href={`https://en.wikipedia.org?curid=${result.pageid}`}
+                        target="_blank"
+                    >
+                        GO
+                    </a>
+                </div>
                 <div className="content">
                     <div className="header">
                         {result.title}
                     </div>
-                    {result.snippet}
+                    {parse(result.snippet)}
                 </div>
             </div>
         );
