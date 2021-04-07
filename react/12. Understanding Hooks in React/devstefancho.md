@@ -188,3 +188,11 @@ useEffect(() => {
 - 왼쪽은 타이핑하면서 바로 검색, 오른쪽은 state로 저장한 후에 검색하는 것으로 오른쪽이 더 좋은 방식이다.
   ![](./img/search_options.png)
   ![](./img/search_options_difference.png)
+  
+## Dropdown
+### props, state, options
+- props를 통해 options를 내려주는 방식 (Dropdown을 재사용하기 위해서)
+- selection은 state임
+![props](./img/dropdown_props.png)
+![state](./img/dropdown_state.png)
+![options](./img/dropdown_options.png)
