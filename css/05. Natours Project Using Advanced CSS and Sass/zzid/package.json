@@ -1,17 +1,17 @@
 {
-  "name": "zzid",
-  "version": "1.0.0",
-  "description": "install sass ",
-  "main": "index.js",
-  "scripts": {
-    "complie:sass": "node-sass sass/main.scss css/style.css -w"
-  },
-  "author": "zzid",
-  "license": "ISC",
-  "devDependencies": {
-    "node-sass": "^5.0.0"
-  },
-  "dependencies": {
-    "live-server": "^1.2.1"
-  }
+    "name": "zzid",
+    "version": "1.0.0",
+    "description": "install sass ",
+    "main": "index.js",
+    "scripts": {
+        "complie:sass": "node-sass sass/main.scss css/style.css -w"
+    },
+    "author": "zzid",
+    "license": "ISC",
+    "devDependencies": {
+        "node-sass": "^5.0.0"
+    },
+    "dependencies": {
+        "live-server": "^1.2.1"
+    }
 }
