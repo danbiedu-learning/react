@@ -254,3 +254,32 @@ useEffect(() => {
 ### addEventListener 사용시에 React v17 이상에서 주의할 점
 
 - [document.addEventListener 붙여줄 때, capture pahse를 추가해준다. `{ capture: true }`([참고](https://reactjs.org/blog/2020/08/10/react-v17-rc.html#fixing-potential-issues))를 addEventListener의(혹은 removeEventListener)에 추가해야 한다.
+
+## Translate widget
+
+![](./img/translate_widget.png)
+
+- options props의 형태는 object로 한다.
+
+```js
+options = [
+  { label: "Afrikaans", value: "af" },
+  { label: "Arabic", value: "ar" },
+  { label: "Hindi", value: "hi" },
+];
+```
+
+### Translation api
+
+[Google translation API](https://cloud.google.com/translate/docs/basic/translating-text)
+
+- 아래 이미지 순서로 작업함, options를 Google Api로 POST request를 보내고, response를 받음
+  ![](./img/translate_1.png)
+  ![](./img/translate_2.png)
+  ![](./img/translate_3.png)
+
+### debounce for api
+
+- Google Translation API는 유료이기 때문에, api 요청횟수를 필요한 만큼 하는 것이 중요하다. 따라서 debounce를 해준다.
+- useEffect#1은 text가 deps이고, useEffect#2는 debouncedText가 deps이다.
+  ![](./img/debounce.png)
