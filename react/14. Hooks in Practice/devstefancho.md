@@ -26,3 +26,29 @@
   ![](./img/seperate_custom_hooks.png)
   ![](./img/input_custom_hooks.png)
   ![](./img/output_custom_hooks.png)
+
+## Deployment (chapter 15 내용)
+
+### vercel
+
+- [versel](https://vercel.com/)에 sign up하고 아래 커맨드로 진행 (최초 vercel에는 email에서 인증을 해줘야함)
+  - 참고 : 설정값은 기본값으로 사용하려면 enter를 계속 치면 된다.
+
+```bash
+> npm install -g vercel
+# go to your project directory
+> vercel
+# If you modify your project
+> vercel --prod
+```
+
+### Netlify
+
+- netlify는 push할때마다 자동으로 re-build 한다.
+- 아래 순서로 진행
+  1. github에 repo 생성
+  2. project를 새로운 repo와 연결
+  - `> git remote add origin {github repo link}`
+  3. github에 push
+  4. netlify(https://www.netlify.com/)에 sign up
+  5. github 계정을 연결하고, deploy할 repo를 선택
