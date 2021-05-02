@@ -18,6 +18,11 @@
     /* this(position : realtive) is the origin of logo-box start */
     position: relative;
 
+    @include respond(phone) {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
     &__logo-box {
         // nesting with 'name prefix'
         position: absolute;

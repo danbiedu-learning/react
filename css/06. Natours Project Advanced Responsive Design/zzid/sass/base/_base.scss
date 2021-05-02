@@ -36,21 +36,27 @@ html {
     // }
 
     // better usage ( And order is matter )
-    @include repond(tab-land) {
+    @include respond(tab-land) {
         font-size: 56.25%; // 1rem = 9px; 9px/16px = 56.25%
     }
-    @include repond(tab-port) {
+    @include respond(tab-port) {
         font-size: 50%; // 1rem = 8px; 8px/16px = 50%
     }
-    // @include repond(phone) {
+    // @include respond(phone) {
     //     font-size: 50%; // 1rem = 8px; 8px/16px = 50%
     // } //unnecessary
 
-    @include repond(big-desktop) { // this is implementes with 'min-width'
+    @include respond(big-desktop) {
+        // this is implementes with 'min-width'
         font-size: 75%; // 1rem = 12px; 12px/16px = 75%
     }
 }
 
 body {
     box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
 }
