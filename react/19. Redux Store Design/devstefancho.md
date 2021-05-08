@@ -106,3 +106,14 @@ export default (state = [], action) => {
 };
 ```
 
+### mapStateToProps ownProps
+
+- mapStateToProps내에서 component 자체 props로 ownProps를 사용할 수 있다.
+
+```javascript
+const mapStateToProps = (state, ownProps) => {
+  return {
+    user: state.users.find((user) => user.id === ownProps.userId),
+  };
+};
+```
