@@ -117,3 +117,27 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 ```
+
+### memoize fetch
+#### 아래와 같이 같은 fetch를 여러번 하게 될 수가 있다.
+```javascript
+export const fetchUser = (id) => async dispatch => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  
+  dispatch({ type: 'FETCH_USER', payload: response.data });
+}
+```
+- 아래 이미지의 상황은 글 id는 다른데 작성자가 같은 경우, 이미 한번 호출했는데 여러번 호출하는 상황
+- ![](./img/fetch_many_times.png)
+
+#### memoize로 이미 fetch한 id는 다시 fetch 하지 않는다.
+```javascript
+export const fetchUser = id => dispatch => _fetchUser(id, dispatch);
+
+const _fetchUser = _.memoize(async (id, dispatch) => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  
+  dispatch({ type: 'FETCH_USER', payload: response.data });
+})
+```
+- ![](./img/fetch_one_time.png)
