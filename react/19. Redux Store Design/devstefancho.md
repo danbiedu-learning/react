@@ -131,6 +131,7 @@ export const fetchUser = (id) => async dispatch => {
 - ![](./img/fetch_many_times.png)
 
 #### memoize로 이미 fetch한 id는 다시 fetch 하지 않는다.
+- 변수명 앞에 `_`은 private 변수를 의미함
 ```javascript
 export const fetchUser = id => dispatch => _fetchUser(id, dispatch);
 
@@ -141,3 +142,35 @@ const _fetchUser = _.memoize(async (id, dispatch) => {
 })
 ```
 - ![](./img/fetch_one_time.png)
+
+#### memoize 없이 하는 방법
+- 새로운 fetchAndPosts라는 action을 만들어서 내부에서 처리해줌
+- getState로 reducer의 state에 접근할 수 있다.
+
+```javascript
+export const fetchUserAndPosts = () => async (dispatch, getState) => {
+  await dispatch(fetchPosts());
+  
+  const userIds = _.uniq(_.map(getState().posts, 'userId'));
+  userIds.forEach(id => dispatch(fetchUser(id)));
+
+  /* 같은 방식을 chain 사용해서 표현
+   _.chain(getState().posts)
+     .map('userId')
+     .uniq()
+     .forEach(id => dispatch(fetchUser(id)))
+     .value();
+  */
+}
+
+export const fetchPosts = () => async dispatch => {
+  const response = await jsonPlaceholder.get('/posts');
+  dispatch({ type: 'FETCH_POSTS', payload: response.data });
+}
+
+export const fetchUser = id => async dispatch => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  
+  dispatch({ type: 'FETCH_USER', payload: response.data });
+}
+```
