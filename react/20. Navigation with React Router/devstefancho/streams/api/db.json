@@ -1,0 +1,61 @@
+{
+  "streams": [
+    {
+      "title": "test",
+      "description": "aa",
+      "id": 1
+    },
+    {
+      "title": "a123",
+      "description": "123",
+      "id": 2
+    },
+    {
+      "title": "Creating new Stream",
+      "description": "I created this stream to test create action creator",
+      "userId": "104334805519431451997",
+      "id": 3
+    },
+    {
+      "title": "testing",
+      "description": "testing devtools",
+      "userId": "104334805519431451997",
+      "id": 4
+    },
+    {
+      "title": "creating test",
+      "description": "test for create button",
+      "userId": "104334805519431451997",
+      "id": 5
+    },
+    {
+      "title": "creating test",
+      "description": "test for create button",
+      "userId": "104334805519431451997",
+      "id": 6
+    },
+    {
+      "title": "new post is created",
+      "description": "My post is always awesome!!",
+      "userId": "104334805519431451997",
+      "id": 7
+    },
+    {
+      "title": "PUT",
+      "description": "PUT",
+      "id": 8
+    },
+    {
+      "title": "this is made by PATCH",
+      "description": "123123",
+      "userId": "104334805519431451997",
+      "id": 9
+    },
+    {
+      "title": "123123aa",
+      "description": "123123aa",
+      "userId": "104334805519431451997",
+      "id": 10
+    }
+  ]
+}
