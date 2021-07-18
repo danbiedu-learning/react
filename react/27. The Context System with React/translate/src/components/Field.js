@@ -5,9 +5,9 @@ const Field = () => {
   return (
     <div className="ui field">
       <LanguageContext.Consumer>
-        {value => (
+        {({ language }) => (
           <React.Fragment>
-            <label htmlFor="">{value === 'english' ? 'Name' : '이름'}</label>
+            <label htmlFor="">{language === 'english' ? 'Name' : '이름'}</label>
             <input type="text" />
           </React.Fragment>
         )}

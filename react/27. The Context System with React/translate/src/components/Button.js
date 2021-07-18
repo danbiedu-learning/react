@@ -18,7 +18,7 @@ const Button = () => {
   }
   return (
     <LanguageContext.Consumer>
-      {language => renderColorButton(language)}
+      {({ language }) => renderColorButton(language)}
     </LanguageContext.Consumer>
   )
 }
